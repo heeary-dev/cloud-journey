@@ -18,7 +18,8 @@ rm note.txt
 ```
 
 ## 🖼️ 실습 스크린샷
-<img src="./images/Day2-cat-output.png" width="300"/>
+<img src="./images/day2-cat-output.png" width="300"/>
+
 
 
 ## ⚠️ 실수 & 깨달은 점 (내일 정리 예정)
