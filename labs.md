@@ -7,15 +7,18 @@
 ## 📚 Day 2 - 리눅스 명령어 실습
 
 ```
-pwd
-ls -al
-cd /home
-mkdir test
-cd test
-vi hello.txt
+mkdir testfolder
+cd testfolder
+touch note.txt
+echo "hello" > note.txt
+cat note.txt
+cp note.txt copy.txt
+mv copy.txt final.txt
+rm note.txt
 ```
 
-## 🖼️ 실습 스크린샷 (예정)
-내일 실습한 화면을 여기에 캡처해서 넣을 예정입니다.
+## 🖼️ 실습 스크린샷
+<img src="./images/Day2-cat-output.png" width="300"/>
+
 
 ## ⚠️ 실수 & 깨달은 점 (내일 정리 예정)
