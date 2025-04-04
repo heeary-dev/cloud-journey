@@ -152,6 +152,7 @@ file test.txt               # 파일 유형 확인
 tree                        # 현재 디렉토리 구조 출력
 ```
 
+---
 
 ## 🖼️ 실습 스크린샷
 
@@ -182,6 +183,73 @@ tree                        # 현재 디렉토리 구조 출력
 처음엔 `..`, `./`, `/` 같은 경로 기호들이 헷갈렸지만  
 직접 입력하고 이동하면서 감이 잡히기 시작했다.  
 특히 `tree` 명령어를 통해 구조를 눈으로 보는 게 굉장히 도움이 됐다.
+
+---
+
+## ✅ Day6 학습 주제  
+- 리눅스에서 파일 및 디렉토리 조작 명령어 실습  
+- **복사, 이동, 삭제, 검색, 명령어 위치 확인** 등 CLI 조작 감각 익히기
+
+---
+
+## 📘 1. 개념 정리  
+
+- `cp`: **파일 복사**  
+- `mv`: **파일 이동 또는 이름 변경**  
+- `rm`: **파일 삭제 (복구 불가, 신중히!)**  
+- `find`: **이름 또는 조건으로 파일 찾기**  
+- `which`: **명령어가 설치된 경로 확인**  
+- `man`: **명령어 매뉴얼(설명서) 열람**
+
+---
+
+## 🧪 2. 실습 내용  
+
+```
+mkdir file-practice && cd file-practice         # 실습 디렉토리 생성 및 진입
+
+touch a.txt b.txt c.txt                         # 테스트용 파일 생성
+cp a.txt copy_a.txt                             # a.txt → copy_a.txt 복사
+mv b.txt renamed_b.txt                          # b.txt 이름 변경
+rm c.txt                                        # c.txt 삭제
+
+mkdir backup && cp -r backup backup-copy        # 디렉토리 복사
+find . -name "copy_a.txt"                       # 특정 파일 검색
+which tree                                      # tree 명령어 위치 확인
+man cp                                          # cp 명령어 설명서 열람 (종료: q)
+```
+---
+
+## 🖼️ 실습 스크린샷
+
+<br> <img src="./images/day6-files-init.png" width="450" height="80"/>
+> **a.txt, b.txt, c.txt 생성 후 초기 상태 확인**
+
+<br> <img src="./images/day6-copy.png" width="450" height="80"/>
+> **a.txt → copy_a.txt로 복사 완료**
+
+<br> <img src="./images/day6-rename.png" width="450" height="80"/>
+> **b.txt → renamed_b.txt로 이름 변경됨**
+
+<br> <img src="./images/day6-find.png" width="450" height="80"/>
+> **find 명령어로 copy_a.txt 경로 확인**
+
+<br> <img src="./images/day6-which-tree.png" width="450" height="80"/>
+> **tree 명령어 위치 확인 (/usr/bin/tree 등)**
+
+---
+
+## 🛠️ Troubleshooting & 기록  
+- `man` 명령어는 **`q` 키로 종료**해야 한다는 점 주의  
+- `tree` 명령어가 없다면 → `sudo apt install tree`로 설치  
+- `find` 명령어 사용 시 `-name` 옵션은 **반드시 따옴표로 감싸야 작동함**
+
+
+---
+
+## 💭 느낀 점  
+처음엔 `cp`, `mv`, `rm` 같은 기본 명령어들이 단순해 보여도  
+**직접 입력하며 구조를 바꿔보는 경험**이였다
 
 
 
