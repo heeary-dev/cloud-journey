@@ -46,7 +46,7 @@
 - [🚀 도전 선언문](./declaration.md)
 - [📝 TIL 기록](./TILs/)
 - [💻 1주차 실습 정리](./labs-week1-foundation.md)
-- [💻 2주차 실습 정리](./labs-week2-find-xargs.md)
+- [💻 2주차 실습 정리](./labs-week2-system-tools.md)
 
 ---
 
