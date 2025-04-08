@@ -286,5 +286,85 @@ zip은 유연하고 편하고, tar는 단단하고 시스템 친화적인 느낌
 또한 `tar -cpvf`와 `-xpvf`를 통해  
 단순 백업이 아닌 **퍼미션까지 포함한 복원**이 가능하다는 점이 인상 깊었다.
 
+---
+
+## ✅ Day 11 학습 주제  
+- Cron을 활용한 작업 자동화 실습  
+- `crontab`, `@reboot`, 로그 출력, 작업 확인 명령어 실습
+
+---
+
+## 📘 1. 개념 정리  
+- `cron`은 특정 시간에 명령어를 자동 실행할 수 있는 리눅스 예약 작업 도구  
+- `crontab -e`: 크론 작업 등록 (사용자 단위)
+- `crontab -l`: 등록된 크론 작업 목록 보기  
+- `* * * * *`: 분, 시, 일, 월, 요일 순서로 설정  
+- `@reboot`: 시스템 부팅 후 실행되는 예약 작업  
+- `>> 파일`: 출력 결과를 해당 파일에 추가  
+- `$(date)`: 현재 날짜와 시간을 문자열로 반환
+
+---
+
+## 🧪 2. 실습 내용  
+
+```
+mkdir -p ~/cron-logs                    # 로그 저장용 폴더 생성
+mkdir -p ~/cron-logs/reboot-test        # @reboot 확인용 폴더 생성
+sudo service cron status                # cron 서비스 실행 여부 확인 (Ubuntu)
+crontab -e                              # 사용자 크론 편집기 열기
+
+# 아래 명령어를 crontab에 등록
+* * * * * echo "cron testing: $(date)" >> /home/gmltjd/cron-logs/test.log
+@reboot mkdir -p /home/heeary/cron-logs/reboot-test
+
+crontab -l                              # 크론 등록 여부 확인
+tree ~/cron-logs                        # 로그 구조 확인
+cat ~/cron-logs/test.log                # 로그 내용 확인
+```
+
+---
+
+## 🖼️ 실습 스크린샷  
+
+<p align="center">
+  <img src="./images/day11-crontab-edit.png" width="450" height="80"/><br/>
+  > `crontab -e`에서 작업 추가 등록한 모습
+</p>
+
+<p align="center">
+  <img src="./images/day11-crontab-list.png" width="450" height="80"/><br/>
+  > `crontab -l` 명령어로 현재 작업 확인
+</p>
+
+<p align="center">
+  <img src="./images/day11-log-output.png" width="450" height="80"/><br/>
+  > `/cron-logs/test.log`에 로그가 누적되는 결과
+</p>
+
+<p align="center">
+  <img src="./images/day11-reboot-check.png" width="450" height="80"/><br/>
+  > `@reboot` 명령으로 생성된 `reboot-test/` 폴더 확인
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록  
+
+- `crontab -e` 첫 실행 시 편집기 선택 화면(`select-editor`)이 나올 수 있음  
+- `~` 또는 `$HOME` 경로는 일부 환경에서 인식되지 않아 **절대경로 사용**이 안전  
+- 로그 파일이 안 생긴다면:  
+  1. `cron` 서비스가 비활성 상태일 수 있음 (`sudo service cron start`)  
+  2. 경로를 상대경로로 써서 인식되지 않는 경우  
+
+---
+
+## 💭 느낀 점  
+
+오늘은 리눅스의 "자동화 도구"인 **Cron**을 직접 실습하면서  
+**내가 정의한 명령이 자동으로 실행되는 경험**을 할 수 있었다.
+
+특히, `@reboot`는 서버 관리에 꼭 필요한 기능이라는 걸 실감했다.  
+GUI 없이 명령만으로 시간을 예약하고 작업을 맡긴다는 점에서,  
+**운영자 중심의 시스템 사고방식**을 체득
 
 
