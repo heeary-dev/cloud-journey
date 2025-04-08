@@ -95,7 +95,7 @@ find . -name "*.log" -exec rm {} \;     # exec 방식 삭제
 
 ---
 
-## ✅ 학습 주제  
+## ✅ Day9 학습 주제  
 - `find` 명령어 고급 사용법 (`-mtime`, `-size`, `-iname`)  
 - `-exec`, `xargs` 명령어 활용  
 - 조건에 따라 자동 삭제/권한부여 등 실습  
@@ -194,6 +194,97 @@ whereis chmod
 
 특히 `xargs`, `-exec`와의 조합은 단순 반복 명령이 아니라  
 **내가 직접 만들어내는 미니 자동화 툴** 같아서 굉장히 흥미로웠다.
+
+---
+
+## Day10 ✅ 학습 주제  
+- `zip` / `tar` 명령어 실습을 통한 압축, 해제, 복원 이해  
+- 압축 포맷 별 동작 방식과 권한 처리 방식 비교  
+
+---
+
+## 📘 1. 개념 정리  
+- `zip`: 파일 압축 및 선택적 해제가 가능하며, 보편적으로 사용됨  
+- `unzip -l`: 압축 해제 없이 내부 구조를 확인  
+- `tar`: 파일을 하나로 묶고, 권한까지 보존 가능 (`-p` 옵션)  
+- `tar -tvf`: 압축을 풀지 않고 내부 내용을 확인  
+- `tar -xvf`: 압축 해제  
+- `tar -xpvf`: 권한 보존하며 압축 해제  
+- `-C`: 압축 해제 위치를 지정하는 옵션  
+
+---
+
+## 🧪 2. 실습 내용  
+
+```
+mkdir test-archive           # 테스트용 디렉토리 생성
+cd test-archive              # 디렉토리 이동
+
+touch a.txt b.txt c.txt      # 샘플 파일 3개 생성
+chmod 744 a.txt              # a.txt에 실행 권한 포함 설정
+
+zip sample.zip a.txt b.txt   # zip으로 파일 2개 압축
+unzip -l sample.zip          # zip 내부 목록 확인
+unzip sample.zip a.txt       # a.txt만 압축 해제
+
+tar -cvf archive.tar c.txt   # c.txt만 tar로 묶어서 압축
+tar -tf archive.tar          # tar 내부 구조 확인
+tar -xvf archive.tar         # tar 압축 해제
+
+tar -cpvf backup.tar a.txt   # 권한 유지 포함하여 tar 백업
+mkdir recover                # 복원 테스트용 디렉토리 생성
+sudo tar -xpvf backup.tar -C recover/  # 권한 유지하며 복원
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="./images/day10-a-txt-permission.png" width="450" height="80"/><br/>
+  > `a.txt`에 `744` 권한을 부여하고 `ls -l`로 확인한 모습
+</p>
+
+<p align="center">
+  <img src="./images/day10-zip-list.png" width="450" height="80"/><br/>
+  > `unzip -l` 명령어로 `sample.zip` 내부 구조 확인
+</p>
+
+<p align="center">
+  <img src="./images/day10-unzip-a-txt.png" width="450" height="80"/><br/>
+  > `a.txt`만 선택적으로 압축 해제한 결과
+</p>
+
+<p align="center">
+  <img src="./images/day10-tar-list.png" width="450" height="80"/><br/>
+  > `tar -tvf archive.tar`로 내부 파일 확인
+</p>
+
+<p align="center">
+  <img src="./images/day10-recover-permission.png" width="450" height="80"/><br/>
+  > `recover/` 디렉토리 안에 압축 해제된 `a.txt`의 권한 확인
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `tar -xpvf` 명령어를 사용할 때는 반드시 `sudo`를 붙여야 **권한 보존이 정확하게 작동**함
+- `unzip`은 **선택적 해제가 가능**하지만 `tar`은 전체 해제 또는 경로 지정이 필요
+- `unzip sample.zip a.txt`처럼 **부분 해제 명령어도 깔끔하게 작동**함
+
+---
+
+## 💭 느낀 점
+
+이번 실습을 통해 처음에는 단순하게 보였던 `압축 명령어`들이  
+상황에 따라 얼마나 다르게 작동하는지 체감할 수 있었다.
+
+특히 `zip`과 `tar`의 **압축 구조와 철학 자체가 다르다**는 걸 느꼈다.  
+zip은 유연하고 편하고, tar는 단단하고 시스템 친화적인 느낌!
+
+또한 `tar -cpvf`와 `-xpvf`를 통해  
+단순 백업이 아닌 **퍼미션까지 포함한 복원**이 가능하다는 점이 인상 깊었다.
 
 
 
