@@ -367,4 +367,94 @@ cat ~/cron-logs/test.log                # 로그 내용 확인
 GUI 없이 명령만으로 시간을 예약하고 작업을 맡긴다는 점에서,  
 **운영자 중심의 시스템 사고방식**을 체득
 
+---
+
+## ✅ Day12 학습 주제  
+- 다양한 압축 명령어 실습 (tar, zip)  
+- 디렉토리 제외 및 파일명 변경 기능 실습  
+- 압축 파일 내부 구조 확인과 복원
+
+---
+
+## 📘 1. 개념 정리  
+- `tar`: 여러 파일을 하나로 묶는 아카이빙 도구. 옵션에 따라 gzip, bzip2 등의 압축도 지원  
+- `zip`: 아카이빙과 압축을 동시에 수행하는 명령어  
+- `--exclude`: 특정 파일/디렉토리를 압축 대상에서 제외  
+- `--transform`: 압축 파일 내 경로/이름을 변경  
+- `-C`: 압축 시 또는 해제 시 기준 경로를 지정
+
+---
+
+## 🧪 2. 실습 내용
+
+```
+tar -czvf archive.tar.gz .                                        # gzip 형식으로 현재 디렉토리 압축
+tar -tzvf archive.tar.gz                                          # 압축 파일 내부 파일 목록 확인
+mkdir ../recover && tar -xzvf archive.tar.gz -C ../recover        # 압축 해제 후 복원 디렉토리에 내용 저장
+zip -r sample.zip .                                               # zip 형식으로 전체 압축
+unzip -l sample.zip # zip 내부 파일 구조 확인
+tar --exclude=subdir -czvf no-subdir.tar.gz .                     # subdir 디렉토리를 제외하고 압축
+tar --transform='s/file1.txt/renamed.txt/' -czvf renamed.tar.gz . # 압축 안에서 파일명 변경
+```
+
+---
+
+## 🖼️ 실습 스크린샷  
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day12-tar-create.png" width="450" height="80"/><br/>
+  > `tar -czvf archive.tar.gz .` 명령어로 gzip 형식으로 현재 디렉토리 압축
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day12-tar-list.png" width="450" height="80"/><br/>
+  > `tar -tzvf archive.tar.gz`로 내부 파일 구조 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day12-tar-extract.png" width="450" height="80"/><br/>
+  > 복원 디렉토리(`../recover`)에 압축 해제한 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day12-zip-create.png" width="450" height="80"/><br/>
+  > `zip -r sample.zip .` 명령어로 zip 형식 압축 수행
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day12-zip-list.png" width="450" height="80"/><br/>
+  > `unzip -l sample.zip`로 zip 파일 구조 확인
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day12-exclude-dir.png" width="450" height="80"/><br/>
+  > `--exclude=subdir` 옵션으로 해당 디렉토리를 제외하고 압축
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day12-transform.png" width="450" height="80"/><br/>
+  > `--transform='s/file1.txt/renamed.txt/'` 옵션으로 압축 내 파일명 변경
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록  
+
+- `tar: Removing leading '/' from member names` → 절대 경로를 압축할 경우 자동으로 슬래시 제거  
+- `--transform` 사용 시 실제 파일명이 정확히 일치해야 작동  
+- `--exclude=subdir/` 와 같이 `/`를 붙여줘야 정확한 디렉토리 제외 가능
+
+---
+
+## 💭 느낀 점  
+
+이번 실습은 단순 압축을 넘어서 **압축 대상 조절과 이름 변경까지 확장된 활용**을 경험했다.  
+특히 `--transform`은 압축 안의 경로까지 조작할 수 있다는 점에서 아주 강력한 옵션이었다.  
+
+명령어만 외우는 게 아니라 **정확한 맥락에서의 사용법과 옵션 구조까지 이해**하는 게 중요하다는 걸 느꼈다.  
+하나하나 실습해가며 **압축 시스템 전반에 대한 감각이 생겼다.**
+
+
+
+
 
