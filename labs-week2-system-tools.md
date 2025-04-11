@@ -487,28 +487,25 @@ grep "file$" sample.log    # "file"로 끝나는 줄만 출력
 
 ---
 
-
----
-
 ## 🖼️ 실습 스크린샷
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yourname/repo/main/images/day13-grep-error-ignore-case.png" width="450" height="80"/><br/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day13-grep-error-ignore-case.png" width="450" height="80"/><br/>
   > `-i` 옵션을 사용해 대소문자 관계없이 "error"를 포함한 줄 검색 결과
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yourname/repo/main/images/day13-grep-line-number.png" width="450" height="80"/><br/>
-  > `-n` 옵션으로 검색된 줄의 줄 번호까지 함께 출력됨
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day13-grep-line-number.png" width="450" height="80"/><br/>
+  > `-n` 옵션으로 검색된 줄의 줄 번호가 함께 출력됨
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yourname/repo/main/images/day13-grep-regex-start-info.png" width="450" height="80"/><br/>
-  > 정규표현식 `^INFO`로 시작하는 줄만 검색됨
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day13-grep-regex-start-info.png" width="450" height="80"/><br/>
+  > 정규표현식 `^INFO`로 시작하는 줄만 검색된 결과
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yourname/repo/main/images/day13-grep-recursive-error.png" width="450" height="80"/><br/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day13-grep-recursive-error.png" width="450" height="80"/><br/>
   > `-r` 옵션으로 하위 디렉토리까지 재귀적으로 검색한 결과
 </p>
 
