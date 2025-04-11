@@ -454,7 +454,80 @@ tar --transform='s/file1.txt/renamed.txt/' -czvf renamed.tar.gz . # 압축 안�
 명령어만 외우는 게 아니라 **정확한 맥락에서의 사용법과 옵션 구조까지 이해**하는 게 중요하다는 걸 느꼈다.  
 하나하나 실습해가며 **압축 시스템 전반에 대한 감각이 생겼다.**
 
+---
+
+## ✅ Day13 학습 주제  
+
+- `grep` 명령어 기초 실습  
+- `-i`, `-n`, `-r` 옵션 사용 방법 이해  
+- 정규표현식 초간단 맛보기 (`^`, `$`, `[]`)  
+- 공백 없는 테스트 로그 파일 생성 → 다양한 텍스트 검색 실습  
+
+---
+
+## 📘 1. 개념 정리  
+- `grep`은 텍스트 파일에서 원하는 문자열 또는 패턴이 포함된 줄을 찾아줌  
+- `-i`: 대소문자 구분 없이 검색  
+- `-n`: 검색 결과 줄 번호 함께 출력  
+- `-r`: 하위 디렉토리까지 재귀 검색  
+- `^`, `$`, `[]` 등은 정규표현식의 시작/끝/문자셋을 의미함  
+
+---
+
+## 🧪 2. 실습 명령어  
+```
+grep "Error" sample.log    # 대소문자 구분하여"Error"가 포함된 줄 출력
+grep -i "error" sample.log # 대소문자 무시하고 "error"가 포함된 줄 출력
+grep -n "file" sample.log  # "file"이 포함된 줄과 해당 줄 번호 출력
+grep -r "error" .          # 현재 디렉토리 이하에서 "error" 재귀 검색
+grep "^INFO" syslog.log    # "INFO"로 시작하는 줄만 출력
+grep "[Ee]rror" sample.log # Error 또는 error가 포함된 줄 출력
+grep "file$" sample.log    # "file"로 끝나는 줄만 출력
+```
+
+---
 
 
+---
 
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/yourname/repo/main/images/day13-grep-error-ignore-case.png" width="450" height="80"/><br/>
+  > `-i` 옵션을 사용해 대소문자 관계없이 "error"를 포함한 줄 검색 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/yourname/repo/main/images/day13-grep-line-number.png" width="450" height="80"/><br/>
+  > `-n` 옵션으로 검색된 줄의 줄 번호까지 함께 출력됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/yourname/repo/main/images/day13-grep-regex-start-info.png" width="450" height="80"/><br/>
+  > 정규표현식 `^INFO`로 시작하는 줄만 검색됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/yourname/repo/main/images/day13-grep-recursive-error.png" width="450" height="80"/><br/>
+  > `-r` 옵션으로 하위 디렉토리까지 재귀적으로 검색한 결과
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `grep`에서 대소문자 구분이 필요한 경우 `-i` 옵션을 꼭 붙여야 원하는 결과가 나옴  
+- `-r` 옵션으로 디렉토리 전체를 검색할 때는 **서브 폴더 내 파일까지 포함됨**  
+- 정규표현식은 매우 유용하지만 괄호, 특수기호 사용 시 **따옴표 필수**
+
+---
+
+## 💭 느낀 점
+
+처음엔 `grep`이 단순히 “단어 찾는 명령어”라고 생각했지만,  
+옵션을 바꿔가며 다양한 조건 검색을 해보면서 **텍스트 분석 도구**라는 감각을 얻었다.
+
+특히, 대소문자 구분 없이 찾거나, 시작 줄/끝 줄 검색 같은 패턴 매칭은  
+**로그 분석의 첫걸음**처럼 느껴졌다.  
+정규표현식은 어렵지만 재미있고, **파일 내용을 다뤄보는 감각이 생겼다.**
 
