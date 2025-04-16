@@ -417,12 +417,12 @@ tar --transform='s/file1.txt/renamed.txt/' -czvf renamed.tar.gz . # 압축 안�
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day12-zip-create.png" width="450" height="80"/><br/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day12-zip-create.png" width="450" /><br/>
   > `zip -r sample.zip .` 명령어로 zip 형식 압축 수행
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day12-zip-list.png" width="450" height="80"/><br/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day12-zip-list.png" width="450" /><br/>
   > `unzip -l sample.zip`로 zip 파일 구조 확인
 </p>
 
@@ -527,4 +527,120 @@ grep "file$" sample.log    # "file"로 끝나는 줄만 출력
 특히, 대소문자 구분 없이 찾거나, 시작 줄/끝 줄 검색 같은 패턴 매칭은  
 **로그 분석의 첫걸음**처럼 느껴졌다.  
 정규표현식은 어렵지만 재미있고, **파일 내용을 다뤄보는 감각이 생겼다.**
+
+---
+
+## ✅ Day 14 학습 주제  
+- 쉘 스크립트 기초 실습: `echo`, `read`, 변수, 인자, 조건문, 반복문 
+- 파일 생성, 실행 권한 부여, 스크립트 실행 흐름 익히기
+
+---
+
+## 📘 1. 개념 정리  
+- 쉘 스크립트란? : 명령어를 파일에 저장해 자동 실행할 수 있도록 만든 것 (`.sh`)
+- `#!/bin/bash`: bash로 실행할 스크립트임을 명시하는 shebang
+- `echo`: 문자열 출력
+- `read`: 사용자 입력 받기
+- `$변수`, `$1`, `$@`: 변수 및 인자 사용
+- `if [ 조건 ]; then ... fi`: 조건문
+- `while [ 조건 ]; do ... done`: 반복문
+
+---
+
+## 🧪 2. 실습 명령어  
+
+```bash
+# hello.sh
+#!/bin/bash
+echo "Welcome to shell script!"
+read -p "What is your name? " name
+echo "Nice to meet you, $name!"
+
+# greet.sh
+#!/bin/bash
+echo "Script name is: $0"
+echo "First argument is: $1"
+echo "All arguments are: $@"
+
+# check.sh
+#!/bin/bash
+read -p "Are you ready? (yes/no): " answer
+if [ "$answer" = "yes" ]; then
+  echo "Great! Let's go!"
+else
+  echo "Okay, maybe next time!"
+fi
+
+# timer.sh
+#!/bin/bash
+time=5
+while [ $time -gt 0 ]; do
+  echo "남은 시간: $time 초"
+  sleep 1
+  time=$((time - 1))
+done
+echo "타이머 종료!"
+```
+
+---
+
+## 🖼️ 실습 스크린샷  
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day14-hello-script-edit.png" width="450" height="80"/><br/>
+  > hello.sh 작성 화면
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day14-script-run-result.png" width="450" height="80"/><br/>
+  > hello.sh 실행 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day14-greet-script-edit.png" width="450" height="80"/><br/>
+  > greet.sh 작성 화면
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day14-greet-run-result.png" width="450" height="80"/><br/>
+  > greet.sh 실행 결과 (인자 테스트)
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day14-check-script-edit.png" width="450" /><br/>
+  > check.sh 작성 화면 (조건문 실습)
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day14-check-run-result.png" width="450" /><br/>
+  > check.sh 실행 결과 (yes/no 입력 결과)
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day14-timer-script-edit.png" width="450" /><br/>
+  > timer.sh 작성 화면 (while 반복문)
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day14-timer-run-result.png" width="450" /><br/>
+  > timer.sh 실행 결과 (타이머 동작 확인)
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록  
+- 한글 입력이 터미널에서 안 되는 경우, 영어로 대체해서 실습 진행
+- `$0`, `$1`, `$@`은 각각 스크립트 이름, 첫 번째 인자, 전체 인자 의미
+- `[ 조건 ]` 표현식은 if/while 공통으로 사용 가능하며, 조건 연산자도 동일하게 적용됨
+
+---
+
+## 💭 느낀 점  
+
+오늘은 쉘스크립트의 **진짜 첫걸음**을 떼는 날이었다. 
+터미널에서 하던 작업들을 파일에 저장하고 실행하면서, 
+“자동화”의 시작이 어떤 느낌인지 체감할 수 있었다.  
+
+단순 명령어가 아니라 **진짜 프로그램처럼 만들 수 있구나** 하는 감각이 생겼다.
+
 
