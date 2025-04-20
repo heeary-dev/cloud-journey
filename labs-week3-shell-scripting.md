@@ -3,6 +3,7 @@
 > 명령어 실습과 결과를 정리하는 공간입니다.
 
 ---
+
 # 🧪 Day 15 – 조건문 고급 실습
 
 ---
@@ -18,44 +19,44 @@
 
 ## 🧪 2. 실습 명령어  
 
-```bash
+```
 # check_user.sh
 #!/bin/bash
-read -p "이름을 입력하세요: " name
+read -p "what is your name: " name
 if [ "$name" = "heeary" ]; then
-  echo "어서 와, $name 님!"
+  echo "hi, $name 님!"
 fi
 
 # check_empty.sh
 #!/bin/bash
-read -p "이름을 입력하세요: " name
+read -p "what is your name: " name
 if [ -z "$name" ]; then
-  echo "입력값이 없습니다"
+  echo "Input value not  found"
 else
-  echo "입력한 이름: $name"
+  echo "name enterd: $name"
 fi
 
 # login_auth.sh
 #!/bin/bash
-read -p "아이디를 입력하세요: " id
-read -p "비밀번호를 입력하세요: " pw
-if [[ "$id" = "heeary" && "$pw" = "1234" ]]; then
-  echo "로그인 성공"
+read -p "please enter your ID: " ID
+read -p "please enter your PW: " PW
+if [[ "$ID" = "heeary" && "$PW" = "1234" ]]; then
+  echo "Login successful"
 else
-  echo "로그인 실패"
+  echo "Login faild"
 fi
 
 # grade_check.sh
 #!/bin/bash
-read -p "점수를 입력하세요: " score
+read -p "please enter your score: " score
 if [ "$score" -ge 90 ]; then
-  echo "A학점"
+  echo "A grade"
 elif [ "$score" -ge 80 ]; then
-  echo "B학점"
+  echo "B grade"
 elif [ "$score" -ge 70 ]; then
-  echo "C학점"
+  echo "C grade"
 else
-  echo "F학점"
+  echo "F grade"
 fi
 
 # admin_check.sh (중첩 if)
@@ -64,7 +65,7 @@ user="heeary"
 role="admin"
 if [ "$user" = "heeary" ]; then
   if [ "$role" = "admin" ]; then
-    echo "중첩 if: 관리자 확인 완료"
+    echo "overlapping if: administrator verification completed"
   fi
 fi
 
@@ -73,52 +74,54 @@ fi
 user="heeary"
 role="admin"
 if [[ "$user" = "heeary" && "$role" = "admin" ]]; then
-  echo "복합 조건: 관리자 확인 완료"
+  echo "compound conditions: administrator verification completed"
 fi
+```
 
 ---
 
 ## 🖼️ 실습 스크린샷
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-check-user-true.png" width="450" height="80"/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-check-user-true.png" width="450" height="80"/><br/>
+  > "heeary" 입력 시 환영 메시지가 출력된다
 </p>
-> "heeary" 입력 시 환영 메시지가 출력된다
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-check-empty-warning.png" width="450" height="80"/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-check-empty-warning.png" width="450" height="80"/><br/>
+  > 아무 입력 없이 엔터 → "입력값이 없습니다" 출력 확인
 </p>
-> 아무 입력 없이 엔터 → "입력값이 없습니다" 출력 확인
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-login-success.png" width="450" height="80"/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-login-success.png" width="450" height="80"/><br/>
+  > 올바른 id/pw 입력 시 로그인 성공
 </p>
-> 올바른 id/pw 입력 시 로그인 성공
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-login-fail.png" width="450" height="80"/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-login-fail.png" width="450" height="80"/><br/>
+  > 틀린 입력 시 로그인 실패
 </p>
-> 틀린 입력 시 로그인 실패
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-grade-b.png" width="450" height="80"/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-grade-b.png" width="450" height="80"/><br/>
+  > 85점 입력 시 B학점 출력
 </p>
-> 85점 입력 시 B학점 출력
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-grade-f.png" width="450" height="80"/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-grade-f.png" width="450" height="80"/><br/>
+  > 67점 입력 시 F학점 출력
 </p>
-> 67점 입력 시 F학점 출력
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-nested-if.png" width="450" height="80"/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-nested-if.png" width="450" height="80"/><br/>
+  > 중첩 조건으로 관리자 확인 메시지 출력
 </p>
-> 중첩 조건으로 관리자 확인 메시지 출력
+
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-compound-if.png" width="450" height="80"/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day15-compound-if.png" width="450" height="80"/><br/>
+  > 복합 조건으로 같은 결과를 더 간단히 표현
 </p>
-> 복합 조건으로 같은 결과를 더 간단히 표현
 
 ---
 
