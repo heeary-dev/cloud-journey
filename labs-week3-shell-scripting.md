@@ -4,9 +4,7 @@
 
 ---
 
-# 🧪 Day 15 – 조건문 고급 실습
-
----
+# ✅ Day 15 – 조건문 고급 실습
 
 ## 📘 1. 개념 정리  
 - `if`, `elif`, `else` 조건문 구조로 분기 제어 가능  
@@ -142,9 +140,7 @@ fi
 
 ---
 
-## 🧪 Day 16 실습 - case 선택문
-
----
+# ✅ Day 16 실습 - case 선택문
 
 ## 📘 1. 개념 정리
 
@@ -283,6 +279,120 @@ esac
 실제 프로그램처럼 만들 수 있다는 게 흥미로웠고,  
 `*` 패턴이 **문맥에 따라 다르게 작동**한다는 점에서  
 쉘의 해석 방식에 대해 더 깊이 생각해볼 수 있었다.
+
+---
+
+# ✅ Day 17 - 쉘 함수 (function) 흐름 제어 실습
+
+## 📘 1. 개념 정리
+
+- **쉘 함수**는 명령어를 묶어 재사용할 수 있는 구조이며 `함수명() { ... }` 형식으로 정의함  
+- 함수에 인자를 전달하면 `$1`, `$2`, `$@` 등으로 받을 수 있으며, CLI 입력값이나 내부 변수 모두 가능  
+- `return`은 함수 실행 결과를 **숫자 상태코드(0=성공, 1~255=실패)** 로 반환함  
+- `$?`는 **직전에 실행한 명령어 또는 함수의 상태코드**를 저장하는 특별 변수  
+- `exit`은 **스크립트 전체를 종료**시키는 명령으로, 중대한 오류 발생 시 사용됨  
+- 실무에서는 함수를 기능별로 분리하고, `main()` 함수에서 전체 흐름을 제어하는 구조를 선호함  
+- `case` 문은 **사용자 입력 명령에 따라 기능을 분기 처리**할 때 유용하게 사용됨
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+#!/bin/bash                                              # bash 셸 사용 선언
+
+# 사용자 로그인 함수
+login() {
+  if [ "$1" = "heeary" ] && [ "$2" = "1234" ]; then      # ID와 PW가 정확한 경우
+    echo "Login success"                                 # 로그인 성공 메시지 출력
+    return 0                                              # 성공 상태 반환
+  else
+    echo "Login failed"                                  # 실패 메시지 출력
+    return 1                                              # 실패 상태 반환
+  fi
+}
+
+# 명령 처리 함수 (case 선택문)
+handle_action() {
+  read -p "Enter action (start/stop/status): " act       # 사용자 명령 입력
+  case "$act" in
+    start)
+      echo "Service started"
+      ;;
+    stop)
+      echo "Service stopped"
+      ;;
+    status)
+      echo "Service is running"
+      ;;
+    *)
+      echo "Unknown command"
+      ;;
+  esac
+}
+
+# 메인 함수: 전체 흐름 제어
+main() {
+  read -p "Enter ID: " id                                 # ID 입력
+  read -p "Enter PW: " pw                                 # PW 입력
+  login "$id" "$pw"                                       # 로그인 함수 호출
+  if [ $? -ne 0 ]; then                                   # 로그인 실패 시
+    echo "Access denied"
+    exit 1
+  fi
+
+  echo "Welcome to the system"                            # 로그인 성공 후 메시지
+  handle_action                                           # 기능 분기 실행
+}
+
+main                                                     # main 함수 호출
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day17-function-login-script.png" width="450"/><br/>
+  > 전체 함수 기반 스크립트 작성 화면
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day17-login-success.png" width="450" height="80"/><br/>
+  > 올바른 ID/PW 입력 후 로그인 성공 메시지 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day17-login-fail.png" width="450" height="80"/><br/>
+  > 잘못된 ID/PW 입력 시 로그인 실패 후 스크립트 종료
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day17-action-case-run.png" width="450" height="80"/><br/>
+  > 로그인 후 입력한 명령에 따라 case문이 실행됨
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `return` 없이 함수가 끝나면 마지막 명령어의 상태코드가 전달되므로, 항상 명시적으로 `return`을 작성함  
+- `$?`는 오직 **직전 명령어 또는 함수의 결과**만 나타내므로, 중간에 다른 명령어가 들어가면 값이 바뀔 수 있음  
+- 실습 초기에 ID와 PW 비교 시 `=` 연산자 앞뒤에 공백이 없도록 주의해야 함 (`[ "$id" = "heeary" ]`)  
+- `case` 문 내의 명령어 처리에서 `*)` 블록이 else 역할을 한다는 것을 활용함  
+- `exit`을 함수 안에서 사용하면 스크립트 전체가 강제 종료되므로, 반드시 필요한 경우에만 사용함
+
+---
+
+## 💭 느낀 점
+
+쉘 함수는 단순 반복을 줄이기 위한 수단이 아니라,  
+**코드 흐름을 명확하게 정리하고 유지보수성을 높이기 위한 필수 구조**라는 걸 실습을 통해 체감했다.  
+특히 `return`과 `$?`의 연결을 이해하니, 조건 흐름 제어가 훨씬 정교해졌다.  
+실무처럼 `main()` 함수로 전체 흐름을 통제하는 구조에 익숙해지는 게 중요하다고 느꼈다.
+
+
+
 
 
 
