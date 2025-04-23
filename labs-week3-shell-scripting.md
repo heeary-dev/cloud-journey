@@ -627,7 +627,108 @@ main
 오늘은 함수, 조건문, 흐름제어를 결합해서 **완전한 로그인 → 등급 확인 → 사용자 인증** 흐름을 구현해봤다.  
 실행 흐름에 따라 `return`, `exit`, `$?`가 어떻게 이어지는지 실제로 써보며 완전히 이해할 수 있었다.  
 
+---
 
+# ✅Day 20 함수 예외 처리 보강
+
+## 📘 1. 개념 정리
+
+- `-z "$변수"`: 값이 비었는지 검사 (입력값 유효성 체크에 사용)
+- `return`: 함수 내부 종료 및 상태코드 반환 (0 = 성공, 1~255 = 실패)
+- `exit`: 스크립트 전체 종료, 반드시 명시적인 상태코드와 함께 사용
+- `$?`: 직전에 실행된 명령어나 함수의 종료 상태코드 확인
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+#!/bin/bash                                        # bash 셸 사용 선언
+
+login() {
+  read -p "Enter ID: " id                          # 사용자 ID 입력
+  read -p "Enter PW: " pw                          # 사용자 PW 입력
+
+  if [ -z "$id" ] || [ -z "$pw" ]; then            # 입력값 비어 있는지 검사
+    echo "ID or PW cannot be empty"               # 경고 메시지
+    return 1
+  fi
+
+  if [ "$id" = "heeary" ] && [ "$pw" = "1234" ]; then
+    echo "Login success"                           # 로그인 성공
+    return 0
+  else
+    echo "Login failed"                            # 로그인 실패
+    return 1
+  fi
+}
+
+grade() {
+  read -p "Enter your score: " score               # 점수 입력
+
+  if [ -z "$score" ]; then
+    echo "Score is required"                       # 점수 입력 안했을 경우
+    return 1
+  fi
+
+  if [ "$score" -ge 90 ]; then
+    echo "Grade A"
+  elif [ "$score" -ge 80 ]; then
+    echo "Grade B"
+  elif [ "$score" -ge 70 ]; then
+    echo "Grade C"
+  else
+    echo "Grade F"
+  fi
+}
+
+main() {
+  login
+  if [ $? -ne 0 ]; then                            # 로그인 실패 시 종료
+    exit 1
+  fi
+
+  grade                                            # 점수 평가
+}
+
+main
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day20-empty-id.png" width="450" height="80"/><br/>
+  > ID 또는 PW 입력 없이 Enter 시 오류 메시지 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day20-login-success-grade-b.png" width="450" height="80"/><br/>
+  > 로그인 성공 후 점수 85 입력 → Grade B 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day20-grade-empty.png" width="450" height="80"/><br/>
+  > 로그인 성공 후 점수 입력 없이 Enter 시 오류 메시지 출력
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `-z`는 문자열이 비었는지 판단할 때 가장 기본적인 안전 장치
+- `$?`는 반드시 `return` 직후에만 확인해야 신뢰성 확보 가능
+- `exit`는 항상 숫자 상태코드를 명시하여 종료 원인 전달
+- 로그인/점수 입력 시, 유효성 검사를 통해 흐름이 안정적으로 제어됨
+
+---
+
+## 💭 느낀 점
+
+오늘 실습을 통해 입력값이 비었을 때 스크립트가 어떻게 오작동할 수 있는지 체감했다.  
+단순한 조건문 하나만으로도 스크립트를 더 견고하게 만들 수 있다는 걸 알게 되었고,  
+현업에서 왜 기본적인 유효성 검사 패턴을 강조하는지 이해가 됐다.
 
 
 
