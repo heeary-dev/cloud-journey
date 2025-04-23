@@ -730,6 +730,148 @@ main
 단순한 조건문 하나만으로도 스크립트를 더 견고하게 만들 수 있다는 걸 알게 되었고,  
 현업에서 왜 기본적인 유효성 검사 패턴을 강조하는지 이해가 됐다.
 
+---
+
+# ✅Day 21 함수 총정리 및 실습
+
+## 📘 1. 개념 정리
+
+- `return`: 함수 내부에서 성공(0), 실패(1~255) 상태코드 반환
+- `$?`: 바로 직전 실행한 명령어 또는 함수의 종료 상태코드 확인
+- `exit`: 스크립트 전체 종료. 상태코드를 명시하면 호출한 쪽에서 인식 가능
+- `-z "$var"`: 문자열이 비어있는지 확인하는 조건식
+- `case`: 여러 조건 중 하나 선택하여 분기 처리하는 구조 (if-elif 대체 가능)
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+#!/bin/bash
+
+login() {
+  read -p "Enter ID: " id
+  read -p "Enter PW: " pw
+
+  if [ -z "$id" ] || [ -z "$pw" ]; then
+    echo "ID or PW is missing"
+    return 1
+  fi
+
+  if [ "$id" = "heeary" ] && [ "$pw" = "1234" ]; then
+    echo "Login success"
+    return 0
+  else
+    echo "Login failed"
+    return 1
+  fi
+}
+
+check_role() {
+  read -p "Are you a super user? (yes/no): " answer
+
+  if [ "$answer" = "yes" ]; then
+    echo "Admin mode activated"
+  else
+    echo "Normal user access"
+  fi
+}
+
+menu() {
+  echo "Select an action:"
+  echo "1) Show current time"
+  echo "2) Show current user"
+  echo "3) Exit"
+  read -p "Choice: " choice
+
+  case "$choice" in
+    1)
+      date
+      ;;
+    2)
+      whoami
+      ;;
+    3)
+      echo "Goodbye"
+      exit 0
+      ;;
+    *)
+      echo "Invalid option"
+      ;;
+  esac
+}
+
+main() {
+  login
+  if [ $? -ne 0 ]; then
+    echo "Access denied"
+    exit 1
+  fi
+
+  check_role
+  menu
+}
+
+main
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day21-login-fail.png" width="450" height="80"/><br/>
+  > 로그인 실패 시 메시지 출력 및 Access denied
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day21-login-success-admin.png" width="450" height="80"/><br/>
+  > 로그인 성공 후 슈퍼유저 여부 yes 입력 시 Admin mode 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day21-menu-option-1.png" width="450" height="80"/><br/>
+  > 메뉴 선택 1 입력 시 현재 시간 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day21-menu-option-2.png" width="450" height="80"/><br/>
+  > 메뉴 선택 2 입력 시 현재 사용자 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day21-menu-invalid.png" width="450" height="80"/><br/>
+  > 잘못된 번호 입력 시 Invalid option 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day21-menu-exit.png" width="450" height="80"/><br/>
+  > 3번 입력 시 Goodbye 출력 후 스크립트 종료
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `return`은 조건 판단에서만 사용하고 출력 목적 함수엔 사용하지 않음
+- `$?`는 반드시 return 직후에 확인해야 정확한 상태 코드 전달 가능
+- `case` 선택지에선 `;;`을 꼭 넣지 않으면 이후 블록도 실행될 수 있음
+- `-z`를 통한 입력값 유효성 검사는 실무에서 필수적
+- `exit`은 로그인 실패나 메뉴 종료 시 정확한 흐름 제어용으로 사용
+
+---
+
+## 💭 느낀 점
+
+쉘 스크립트 전체 구조를 함수로 나눠보고 흐름을 구성하니  
+단순히 명령어만 나열하던 때보다 **훨씬 안정적이고 예외에 강한 스크립트**가 만들어졌다.  
+`return`, `exit`, `$?`, `-z`, `case` 등 모든 문법이 하나의 실무 흐름으로 연결된다는 점에서  
+쉘 스크립트가 단순한 자동화 도구를 넘어, **하나의 작은 프로그램**이라는 사실을 실감했다.
+
+
+
+
+
 
 
 
