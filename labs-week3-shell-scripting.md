@@ -391,6 +391,140 @@ main                                                     # main 함수 호출
 특히 `return`과 `$?`의 연결을 이해하니, 조건 흐름 제어가 훨씬 정교해졌다.  
 실무처럼 `main()` 함수로 전체 흐름을 통제하는 구조에 익숙해지는 게 중요하다고 느꼈다.
 
+---
+
+# ✅ Day 18 - 함수 응용 및 심화실습
+
+## 📘 1. 개념 정리  
+- `check_input()`: 입력값이 비었는지 검사 (빈 문자열 체크)  
+- `login()`: ID/PW가 맞는지 확인하여 로그인 처리  
+- `handle_command()`: 사용자 명령에 따라 start/stop/status 출력  
+- `main()`: 전체 흐름을 통제하는 중심 함수  
+- `return`: 함수 종료와 함께 상태코드(0/1) 반환  
+- `exit`: 전체 스크립트 종료, 실패 시 조건문에서 사용  
+- `$?`: 직전 명령어 또는 함수의 결과 상태코드 확인  
+
+---
+
+## 🧪 2. 실습 명령어  
+
+```
+#!/bin/bash                                             
+
+check_input() {
+  if [ -z "$1" ] || [ -z "$2" ]; then                   
+    echo "Missing ID or PW"
+    return 1
+  fi
+  return 0
+}
+
+login() {
+  if [ "$1" = "heeary" ] && [ "$2" = "1234" ]; then     
+    echo "Login success"
+    return 0
+  else
+    echo "Login failed"
+    return 1
+  fi
+}
+
+handle_command() {
+  read -p "Enter command (start/stop/status): " cmd     
+  case "$cmd" in
+    start)
+      echo "Service started"
+      ;;
+    stop)
+      echo "Service stopped"
+      ;;
+    status)
+      echo "Service is running"
+      ;;
+    *)
+      echo "Unknown command"
+      ;;
+  esac
+}
+
+main() {
+  read -p "Enter ID: " id                               
+  read -p "Enter PW: " pw                               
+
+  check_input "$id" "$pw"                               
+  if [ $? -ne 0 ]; then
+    echo "Input validation failed"
+    exit 1
+  fi
+
+  login "$id" "$pw"                                     
+  if [ $? -ne 0 ]; then
+    echo "Access denied"
+    exit 1
+  fi
+
+  echo "Welcome, $id"
+  handle_command                                        
+}
+
+main
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day18-login-flow-script.png" width="450" /><br/>
+  > 전체 함수 기반 스크립트 작성 화면
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day18-check-input-fail.png" width="450" height="80"/><br/>
+  > ID 또는 PW가 비어 있을 때 입력 실패 메시지 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day18-login-fail.png" width="450" height="80"/><br/>
+  > 잘못된 ID/PW 입력 시 로그인 실패 메시지 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day18-login-success.png" width="450" height="80"/><br/>
+  > 로그인 성공 후 기능 명령 프롬프트 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day18-command-start.png" width="450" height="80"/><br/>
+  > start 명령 실행 결과 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day18-command-status.png" width="450" height="80"/><br/>
+  > status 명령 실행 결과 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day18-command-invalid.png" width="450" height="80"/><br/>
+  > 잘못된 명령 입력 시 Unknown command 출력
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록  
+- `check_input()` 함수에서 공백 입력 시 `-z` 조건으로 정확히 검출됨  
+- 함수 내부에서 `exit`을 사용하면 전체 종료되므로 **반드시 `main()`에서만 사용**  
+- `$?` 상태코드를 체크할 때 **다음 줄에 다른 명령어가 오면 오류 발생 가능**  
+- `case` 문에서 `*)`는 if의 `else` 역할 → 반드시 있어야 안정적인 분기 가능
+
+---
+
+## 💭 느낀 점  
+오늘 실습은 단순히 조건문을 쓰는 것이 아니라  
+**실제 흐름을 함수로 분리하고 main으로 조립하는 구조**를 직접 체득한 시간이었다.  
+특히 return → $? → exit → 흐름 분기의 연결을 구현하면서,  
+단순한 명령어를 넘어서 **작동하는 프로그램을 짜는 감각**을 얻었다.  
+
 
 
 
