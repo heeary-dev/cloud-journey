@@ -299,22 +299,22 @@ esac
 ## 🧪 2. 실습 명령어
 
 ```
-#!/bin/bash                                              # bash 셸 사용 선언
+#!/bin/bash                                              
 
 # 사용자 로그인 함수
 login() {
-  if [ "$1" = "heeary" ] && [ "$2" = "1234" ]; then      # ID와 PW가 정확한 경우
-    echo "Login success"                                 # 로그인 성공 메시지 출력
-    return 0                                              # 성공 상태 반환
+  if [ "$1" = "heeary" ] && [ "$2" = "1234" ]; then      
+    echo "Login success"                                
+    return 0                                             
   else
-    echo "Login failed"                                  # 실패 메시지 출력
-    return 1                                              # 실패 상태 반환
+    echo "Login failed"                                 
+    return 1                                            
   fi
 }
 
 # 명령 처리 함수 (case 선택문)
 handle_action() {
-  read -p "Enter action (start/stop/status): " act       # 사용자 명령 입력
+  read -p "Enter action (start/stop/status): " act       
   case "$act" in
     start)
       echo "Service started"
@@ -333,19 +333,19 @@ handle_action() {
 
 # 메인 함수: 전체 흐름 제어
 main() {
-  read -p "Enter ID: " id                                 # ID 입력
-  read -p "Enter PW: " pw                                 # PW 입력
-  login "$id" "$pw"                                       # 로그인 함수 호출
-  if [ $? -ne 0 ]; then                                   # 로그인 실패 시
+  read -p "Enter ID: " id                                 
+  read -p "Enter PW: " pw                                 
+  login "$id" "$pw"                                       
+  if [ $? -ne 0 ]; then                                   
     echo "Access denied"
     exit 1
   fi
 
-  echo "Welcome to the system"                            # 로그인 성공 후 메시지
-  handle_action                                           # 기능 분기 실행
+  echo "Welcome to the system"                            
+  handle_action                                           
 }
 
-main                                                     # main 함수 호출
+main                                                     
 ```
 
 ---
@@ -643,31 +643,31 @@ main
 ## 🧪 2. 실습 명령어
 
 ```
-#!/bin/bash                                        # bash 셸 사용 선언
+#!/bin/bash                                        
 
 login() {
-  read -p "Enter ID: " id                          # 사용자 ID 입력
-  read -p "Enter PW: " pw                          # 사용자 PW 입력
+  read -p "Enter ID: " id                          
+  read -p "Enter PW: " pw                          
 
-  if [ -z "$id" ] || [ -z "$pw" ]; then            # 입력값 비어 있는지 검사
-    echo "ID or PW cannot be empty"               # 경고 메시지
+  if [ -z "$id" ] || [ -z "$pw" ]; then            
+    echo "ID or PW cannot be empty"               
     return 1
   fi
 
   if [ "$id" = "heeary" ] && [ "$pw" = "1234" ]; then
-    echo "Login success"                           # 로그인 성공
+    echo "Login success"                           
     return 0
   else
-    echo "Login failed"                            # 로그인 실패
+    echo "Login failed"                            
     return 1
   fi
 }
 
 grade() {
-  read -p "Enter your score: " score               # 점수 입력
+  read -p "Enter your score: " score               
 
   if [ -z "$score" ]; then
-    echo "Score is required"                       # 점수 입력 안했을 경우
+    echo "Score is required"                       
     return 1
   fi
 
@@ -684,11 +684,11 @@ grade() {
 
 main() {
   login
-  if [ $? -ne 0 ]; then                            # 로그인 실패 시 종료
+  if [ $? -ne 0 ]; then                           
     exit 1
   fi
 
-  grade                                            # 점수 평가
+  grade                                            
 }
 
 main
