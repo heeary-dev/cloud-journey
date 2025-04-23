@@ -523,7 +523,109 @@ main
 오늘 실습은 단순히 조건문을 쓰는 것이 아니라  
 **실제 흐름을 함수로 분리하고 main으로 조립하는 구조**를 직접 체득한 시간이었다.  
 특히 return → $? → exit → 흐름 분기의 연결을 구현하면서,  
-단순한 명령어를 넘어서 **작동하는 프로그램을 짜는 감각**을 얻었다.  
+단순한 명령어를 넘어서 **작동하는 프로그램을 짜는 감각**을 얻었다. 
+
+---
+
+# ✅ Day 19 실무함수의 흐름
+
+## 📘 1. 개념 정리
+
+- 쉘 함수(Function): 명령어를 묶어 재사용하는 구조 (`함수명() { ... }`)
+- 인자 전달: `$1`, `$2`, `$@` 로 함수 외부에서 값을 받을 수 있음
+- `return`: 함수 내부에서 숫자 상태코드 반환 (`0 = 성공`, `1~255 = 실패`)
+- `exit`: 스크립트 전체 종료용 명령, 일반적으로 `main()` 함수 내에서 사용
+- `$?`: 직전에 실행된 명령어 또는 함수의 종료 상태코드를 확인하는 특수 변수
+
+## 🧪 2. 실습 명령어
+
+```
+#!/bin/bash
+
+login() {
+  read -p "Enter ID: " id
+  read -p "Enter PW: " pw
+
+  if [ "$id" = "heeary" ] && [ "$pw" = "1234" ]; then
+    echo "Login success"
+    return 0
+  else
+    echo "Login failed"
+    return 1
+  fi
+}
+
+grade() {
+  read -p "Enter score (0~100): " score
+
+  if [ "$score" -ge 90 ]; then
+    echo "Grade A"
+  elif [ "$score" -ge 80 ]; then
+    echo "Grade B"
+  elif [ "$score" -ge 70 ]; then
+    echo "Grade C"
+  else
+    echo "Grade F"
+  fi
+}
+
+check_user() {
+  read -p "Are you a super user? (yes/no): " answer
+
+  if [ "$answer" = "yes" ]; then
+    echo "Welcome, root user"
+  else
+    echo "Access level: normal user"
+  fi
+}
+
+main() {
+  login
+  if [ "$?" -ne 0 ]; then
+    echo "Access denied"
+    exit 1
+  fi
+
+  grade
+  check_user
+}
+
+main
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day19-login-fail-exit.png" width="450" height="80"/><br/>
+  > 잘못된 ID 입력 시 로그인 실패 후 Access denied 처리
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day19-login-grade-a.png" width="450" height="80"/><br/>
+  > 로그인 성공 후 점수 90점 입력 → Grade A 출력
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day19-grade-f-normal.png" width="450" height="80"/><br/>
+  > 로그인 성공 후 점수 69점 입력 → Grade F, 일반 사용자 인증
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `$pw = "1234"`처럼 변수 앞뒤 따옴표 빠지면 비교 실패 → `"$pw" = "1234"`로 수정
+- `-ge 90]`처럼 비교 연산자 뒤 공백 없으면 syntax error → `-ge 90 ];` 로 공백 필수
+- bash로 실행해야 `read -p`가 동작함
+
+---
+
+## 💭 느낀 점
+
+오늘은 함수, 조건문, 흐름제어를 결합해서 **완전한 로그인 → 등급 확인 → 사용자 인증** 흐름을 구현해봤다.  
+실행 흐름에 따라 `return`, `exit`, `$?`가 어떻게 이어지는지 실제로 써보며 완전히 이해할 수 있었다.  
 
 
 
