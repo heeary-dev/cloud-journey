@@ -59,7 +59,7 @@ git push origin main
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day22-index-result.png" width="450" /><br/>
-  > Git add/commit/push 완료 화면
+  > 웹 페이지 출력 화면
 </p>
 
 ---
