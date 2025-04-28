@@ -53,12 +53,12 @@ git push origin main
 ## 🖼️ 3. 실습 스크린샷
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day22-index-html-edit.png" width="450" /><br/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day22-index-edit.png" width="450" /><br/>
   > index.html 작성 화면
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day22-git-commit-push.png" width="450" /><br/>
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day22-index-result.png" width="450" /><br/>
   > Git add/commit/push 완료 화면
 </p>
 
