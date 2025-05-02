@@ -102,13 +102,13 @@ code summer.html                # VS Code로 파일 열기
 ## 🖼️ 실습 스크린샷  
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/camping-guide/main/images/day23-html-structure.png" width="450" /><br/>
-  > summer.html 파일에서 시맨틱 구조 작성 화면
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day23-summer-html-edit.png" width="450" /><br/>
+  > summer.html 작성 화면 (시맨틱 태그 구조 포함)
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/heeary-dev/camping-guide/main/images/day23-html-preview.png" width="450" /><br/>
-  > 브라우저에서 summer.html 출력 결과 (여름 캠핑 준비물 목록)
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day23-summer-html-preview.png" width="450" /><br/>
+  > summer.html을 브라우저에서 열었을 때 출력된 캠핑 준비물 목록
 </p>
 
 ---
