@@ -99,7 +99,7 @@ code summer.html                # VS Code로 파일 열기
 
 ---
 
-## 🖼️ 실습 스크린샷  
+## 🖼️ 3. 실습 스크린샷  
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day23-summer-html-edit.png" width="450" /><br/>
@@ -113,16 +113,75 @@ code summer.html                # VS Code로 파일 열기
 
 ---
 
-## 🛠️ Troubleshooting & 기록  
+## 🛠️ 4. Troubleshooting & 기록  
 - VS Code에서 새 프로젝트 폴더를 열고 하위 디렉토리를 만들 때 상대 경로를 정확히 지정해야 함
 - `<ul>`, `<li>`로 목록을 구성할 때 들여쓰기를 맞추는 것이 가독성에 매우 중요
 - `<a href="폴더/파일명.html">` 경로는 디렉토리 기준으로 설정됨 (루트는 `camping-guide`)
 
 ---
 
-## 💭 느낀 점  
+## 💭 5. 느낀 점  
 
 처음으로 **시맨틱 태그만으로 웹페이지의 구조를 직접 짜보는 경험**을 했다.  
 디자인 요소 없이도 정보의 흐름과 구조를 짜는 일 자체가 꽤 의미 있었다.  
 **앞으로 만들 모든 웹페이지의 기반이 되는 구조**라는 점에서 큰 첫걸음이 된 날이었다.
+
+---
+
+# ✅ Day 24 – 캠핑 웹사이트 구조 설계 및 시맨틱 구조 확장
+
+## 📘 1. 개념 정리
+- Day 24는 캠핑 웹사이트의 전체 구조 설계를 수행하고, 각 카테고리 페이지에 시맨틱 HTML 태그를 적용한 날이다.
+- 기존에 작성한 `gear/summer.html`의 시맨틱 구조를 기준으로, 동일한 형식으로 나머지 페이지(`seasonal.html`, `beginner.html`, `faq.html`)를 생성하였다.
+- 사용한 주요 태그: `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`
+- GitHub Pages로 배포 가능한 구조를 유지하면서 캠핑 입문자에게 유용한 정보를 전달하는 형식으로 정리
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+# 디렉토리 및 파일 생성
+mkdir food sites tips
+touch food/seasonal.html sites/beginner.html tips/faq.html
+
+# VS Code에서 각 HTML 파일을 열어 시맨틱 구조 적용
+code food/seasonal.html
+code sites/beginner.html
+code tips/faq.html
+```
+
+---
+
+## 3. 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day24-seasonal-semantic.png" width="450" /><br/>
+  > 계절별 요리 페이지에 시맨틱 구조 적용
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day24-beginner-semantic.png" width="450" /><br/>
+  > 초보자 캠핑장 소개 페이지 시맨틱 구조
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day24-faq-semantic.png" width="450" /><br/>
+  > FAQ 페이지 시맨틱 구조 적용 결과
+</p>
+
+---
+
+## 🛠️ 4. Troubleshooting & 기록
+- 경로 실수 방지를 위해 모든 `<a href>`는 `/절대경로` 방식으로 통일함
+- 시맨틱 태그 중복 사용 방지를 위해 `<main>`은 파일당 1회만 사용
+- nav 링크에 파일이 없는 경우 404가 출력될 수 있으므로, 각 파일 존재 여부 확인 필수
+
+---
+
+## 💭 5. 느낀 점
+- 기존에 단순히 구조만 있던 HTML이 시맨틱 구조를 통해 의미가 생기고 유지보수가 쉬워졌음을 체감함
+- 시맨틱 태그를 일관되게 적용하니 전체 사이트 구조가 통일감 있게 구성되었고, 확장도 수월해질 것이라 확신함
+
+
 
