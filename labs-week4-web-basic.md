@@ -183,5 +183,97 @@ code tips/faq.html
 - 기존에 단순히 구조만 있던 HTML이 시맨틱 구조를 통해 의미가 생기고 유지보수가 쉬워졌음을 체감함
 - 시맨틱 태그를 일관되게 적용하니 전체 사이트 구조가 통일감 있게 구성되었고, 확장도 수월해질 것이라 확신함
 
+---
+# ✅ Day 25 – 사용자의 입력을 받는 <form>태그와 표형식의 <table>태그
+
+## 📘 1. 개념 정리
+
+- `<form>`: 사용자 입력을 서버로 전송하는 구조
+- `<input>`: 다양한 형태의 입력 필드 (text, email, submit 등)
+- `<label>`: 입력 필드에 대한 설명 연결, `for` 속성으로 `id`와 매칭
+- `<textarea>`: 여러 줄 텍스트 입력 영역, 기본값은 태그 내부에 작성
+- `<select>` + `<option>`: 드롭다운 선택, `value`가 없으면 텍스트가 value가 됨
+- `<table>`: 데이터 표 형식 표현용, `<tr>`, `<th>`, `<td>`로 구성
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+<!-- tips/faq.html -->
+<form action="/submit-question" method="post">
+  <label for="username">Name:</label>
+  <input type="text" id="username" name="user_name">
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="user_email">
+
+  <label for="question">Your Question:</label>
+  <textarea id="question" name="user_question" rows="4" cols="40">Write your question</textarea>
+
+  <br>
+  <input type="checkbox" id="agree" name="consent" value="yes">
+  <label for="agree">개인정보 이용에 동의합니다</label>
+
+  <br>
+  <input type="submit" value="제출">
+</form>
+
+<!-- gear/summer.html -->
+<table border="1">
+  <tr>
+    <th>제품</th>
+    <th>평균가격</th>
+    <th>필수품목(O,X)</th>
+  </tr>
+  <tr>
+    <td>쿨매트</td>
+    <td>₩15,000</td>
+    <td>O</td>
+  </tr>
+  <tr>
+    <td>모기 기피제</td>
+    <td>₩5,000</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td>휴대용 선풍기</td>
+    <td>₩12,000</td>
+    <td>O</td>
+  </tr>
+</table>
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day25-faq-form.png" width="450"/><br/>
+  > 문의 제출 form이 제대로 표시됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day25-summer-table.png" width="450"/><br/>
+  > 장비 목록 table이 시맨틱 구조에 맞게 출력됨
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `<textarea>`에 `value`를 넣어도 작동하지 않음 → 태그 내부에 기본값 작성해야 함
+- `<option>`에서 `value`를 안 넣으면 텍스트가 value로 사용됨 (서버 전송 값에 주의)
+- label 없이 input만 있으면 화면이 허전하고 UX가 떨어짐 → 제목(h2)과 안내문(p)을 같이 배치함
+
+---
+
+## 💭 느낀 점
+
+- form 태그는 단순히 입력만 하는 게 아니라, 전체 전송 구조를 통제하는 부모 역할이라는 걸 실감함
+- value와 name, label의 역할이 각각 다르며, 어디서 보이고 어디로 전송되는지를 명확히 이해할 수 있었음
+- 실제 웹페이지와 비슷한 구조로 실습하니 시맨틱한 HTML 구성 방식이 훨씬 직관적으로 와닿았음
+
+
 
 
