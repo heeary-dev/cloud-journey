@@ -274,6 +274,97 @@ code tips/faq.html
 - value와 name, label의 역할이 각각 다르며, 어디서 보이고 어디로 전송되는지를 명확히 이해할 수 있었음
 - 실제 웹페이지와 비슷한 구조로 실습하니 시맨틱한 HTML 구성 방식이 훨씬 직관적으로 와닿았음
 
+---
+
+# ✅ Day 26 – HTML 마무리: button, HTML5 입력 필드, 테이블 병합
+
+## 📘 1. 개념 정리
+
+- `<button>`: 텍스트, 이미지 등 자유롭게 콘텐츠를 넣을 수 있는 유연한 버튼 태그
+- `<input type="email|url|date|text">`: HTML5 입력 필드로 사용자의 입력을 쉽게 제한하고 검증
+- `required`: 필수 입력을 브라우저 단에서 검증하는 속성
+- `<table>`: 행과 열을 구성하여 데이터를 정리하는 태그
+- `colspan`, `rowspan`: 열/행 병합을 통해 시각적 그룹화 표현 가능
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+<!-- faq.html -->
+<section>
+  <h2>문의자 정보 입력</h2>
+  <form action="/submit-question" method="post">
+    <label for="name">이름</label>
+    <input type="text" id="name" name="user_name" required><br>
+
+    <label for="email">이메일</label>
+    <input type="email" id="email" name="user_email" required><br>
+
+    <label for="birth">생년월일</label>
+    <input type="date" id="birth" name="user_birth"><br><br>
+
+    <button type="submit">
+      <img src="send-icon.png" alt="제출" width="16">
+      제출하기
+    </button>
+  </form>
+</section>
+
+<!-- summer.html -->
+<section>
+  <h2>장비 목록 요약표</h2>
+  <table border="1">
+    <tr>
+      <th colspan="2">장비 카테고리</th>
+      <th rowspan="2">공통 비고</th>
+    </tr>
+    <tr>
+      <th>이름</th>
+      <th>가격</th>
+    </tr>
+    <tr>
+      <td>쿨매트</td>
+      <td>₩15,000</td>
+      <td rowspan="2">여름 필수품</td>
+    </tr>
+    <tr>
+      <td>모기 퇴치제</td>
+      <td>₩5,000</td>
+    </tr>
+    <tr>
+      <td colspan="3">※ 일부 품목은 상황에 따라 변경될 수 있습니다.</td>
+    </tr>
+  </table>
+</section>
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day26-faq-form-final.png" width="450"/><br/>
+  > 실전형 입력 필드 form이 자연스럽게 구성됨
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day26-summer-table-merged.png" width="450"/><br/>
+  > 병합 속성이 적용된 테이블이 정리되어 출력됨
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 실전 중심 입력 필드 선택 기준 정립: 이름, 이메일, 생년월일, 홈페이지 주소 등 실무 유의미한 항목만 사용
+
+---
+
+## 💭 느낀 점
+
+- 이제는 불필요한 태그까지 외우는 게 아니라, 실전에서 진짜 사용하는 HTML 구조만 익히는 게 얼마나 중요한지 알게 됐다.
+- 태그 하나하나에 의미를 부여하고, 실제 흐름에 맞춰 배치하는 연습을 하면서 웹 개발자의 시야가 더 넓어진 느낌이다.
 
 
 
