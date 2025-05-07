@@ -366,5 +366,110 @@ code tips/faq.html
 - 이제는 불필요한 태그까지 외우는 게 아니라, 실전에서 진짜 사용하는 HTML 구조만 익히는 게 얼마나 중요한지 알게 됐다.
 - 태그 하나하나에 의미를 부여하고, 실제 흐름에 맞춰 배치하는 연습을 하면서 웹 개발자의 시야가 더 넓어진 느낌이다.
 
+---
+
+
+# ✅ Day 27 – CSS적용과 선택자 기본
+
+## 📘 1. 개념 정리
+
+- 외부 스타일시트는 `<link rel="stylesheet" href="파일명.css">` 형태로 `<head>` 안에 작성하며, 실무에서 가장 일반적으로 사용됨
+- 선택자는 태그 선택자(`p`), 클래스 선택자(`.클래스명`), 아이디 선택자(`#아이디명`)가 있으며, 우선순위는 id > class > tag
+- CSS 기본 속성: `color`, `font-size`, `background-color` 등을 통해 텍스트 색상, 크기, 배경 등을 제어할 수 있음
+- 주석은 HTML에선 `<!-- -->`, CSS에선 `/* */` 사용함
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>캠린이 사용설명서</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 id="main-title">캠핑 가이드에 오신 걸 환영합니다</h1>
+    <nav class="main-nav">
+      <a href="gear/summer.html">여름 캠핑</a> |
+      <a href="food/seasonal.html">캠핑 요리</a> |
+      <a href="sites/beginner.html">추천 캠핑장</a>
+    </nav>
+  </header>
+
+  <main>
+    <p class="intro-text">이 웹사이트는 캠핑을 처음 시작하는 분들을 위한 안내서입니다.</p>
+  </main>
+
+  <footer>
+    <p>© 2025 캠린이. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
+/* style.css */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+#main-title {
+  color: #2c3e50;
+  font-size: 32px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.main-nav {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.main-nav a {
+  color: #2980b9;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.main-nav a:hover {
+  text-decoration: underline;
+}
+
+.intro-text {
+  text-align: center;
+  font-size: 18px;
+  margin: 40px 20px;
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day27-index-css-applied.png" width="450"/><br/>
+  > 외부 CSS가 적용된 index.html의 실행 화면
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 없음
+
+---
+
+## 💭 느낀 점
+
+- 처음으로 style.css 파일을 외부에서 연결하고, HTML 문서 구조를 기반으로 디자인을 입히는 과정을 경험함  
+- 선택자와 기본 속성을 통해 텍스트의 시각적 표현을 제어하는 감각을 익힐 수 있었음  
+- 아직 배우지 않은 속성들이 존재하지만, 실습 흐름상 구조만 먼저 적용하고 이후 순차적으로 학습할 계획임
+
 
 
