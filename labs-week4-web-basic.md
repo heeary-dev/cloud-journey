@@ -471,5 +471,108 @@ body {
 - 선택자와 기본 속성을 통해 텍스트의 시각적 표현을 제어하는 감각을 익힐 수 있었음  
 - 아직 배우지 않은 속성들이 존재하지만, 실습 흐름상 구조만 먼저 적용하고 이후 순차적으로 학습할 계획임
 
+---
+
+# ✅ Day 28 – CSS박스모델과 여백속성 이해 및 적용
+
+## 📘 1. 개념 정리
+
+- 외부 스타일시트는 `<link rel="stylesheet" href="파일명.css">` 형태로 `<head>` 안에 작성하며, 실무에서 가장 일반적으로 사용됨
+- 선택자는 태그 선택자(`p`), 클래스 선택자(`.클래스명`), 아이디 선택자(`#아이디명`)가 있으며, 우선순위는 id > class > tag
+- CSS 기본 속성: `color`, `font-size`, `background-color` 등을 통해 텍스트 색상, 크기, 배경 등을 제어할 수 있음
+- 박스 모델은 content → padding → border → margin 4단계 구조로 이루어짐
+- margin은 요소 바깥 여백, padding은 안쪽 여백, border는 테두리 역할을 함
+- width는 가로, height는 세로 크기를 의미하며, 블록 레벨 요소에 적용됨
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+/* style.css - Day 28 박스 모델 확장 */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+#main-title {
+  color: #2c3e50;
+  font-size: 32px;
+  text-align: center;
+  margin-top: 30px;
+  padding: 10px;
+  border: 2px solid #2c3e50;
+}
+
+.main-nav {
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px dashed #aaa;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-nav a {
+  color: #2980b9;
+  text-decoration: none;
+  margin: 0 15px;
+  padding: 5px;
+  border: 1px solid transparent;
+}
+
+.main-nav a:hover {
+  text-decoration: underline;
+  border: 1px solid #2980b9;
+}
+
+.intro-text {
+  text-align: center;
+  font-size: 18px;
+  background-color: #ffffff;
+  margin: 40px auto;
+  padding: 20px;
+  width: 60%;
+  border: 1px solid #ccc;
+}
+
+footer {
+  background-color: #e9ecef;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+  border-top: 2px solid #ccc;
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day28-index-boxmodel.png" width="450"/><br/>
+  > margin, padding, border가 적용된 index.html의 실행 화면
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- DevTools를 통해 margin/padding/border를 시각적으로 확인하며 실제 요소 영역을 구조적으로 파악함
+- margin과 padding을 구분하지 못해 초기 레이아웃이 흐트러졌지만, 구조 단위로 조절하며 해결
+
+---
+
+## 💭 느낀 점
+
+- 박스 모델의 4단계 구조를 실습으로 직접 다뤄보며 여백과 테두리 개념을 명확히 익힘
+- 요소마다 margin과 padding을 달리 적용함으로써 레이아웃을 조정하는 감각을 체득함
+- DevTools로 박스 모델 시각화 확인이 매우 직관적이었으며, 실무에서도 반드시 활용해야 할 도구라는 걸 실감함
+
+
 
 
