@@ -211,3 +211,87 @@ footer > p + p {
 - 오늘은 **CSS의 구조 선택자와 가상 클래스의 실질적인 사용 방식**을 체험하면서,  
   앞으로는 필요한 부분에만 간결하게 적용하는 감각을 익혀야겠다고 느꼈음
 
+---
+
+# ✅ Day 31 – 박스모델의 정확한 이해을 위한 재정리 및 추가 싫습
+
+## 📘 1. 개념 정리
+
+- 박스 모델(Box Model)은 HTML 요소가 사각형 박스로 구성되어 있고, 그 안에 4단계 구조를 가짐
+  - `content`: 실제 콘텐츠 영역
+  - `padding`: 콘텐츠와 테두리 사이 내부 여백
+  - `border`: 요소의 테두리
+  - `margin`: 요소 바깥 여백
+- `width`, `height`, `padding`, `margin` 조합에 따라 요소의 배치와 크기, 간격이 완전히 달라짐
+- 시각적으로 체감하는 게 핵심인 개념으로, DevTools를 통해 직접 구조를 확인하는 것이 중요
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+/* 박스 모델 실습 */
+
+.box-layout {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.box {
+  background-color: #dfe6e9;
+  color: #2d3436;
+  font-size: 20px;
+  text-align: center;
+  border: 2px solid #636e72;
+  margin: 20px 0;
+}
+
+/* 개별 박스 설정 */
+.box-1 {
+  width: 100%;
+  padding: 20px;
+}
+
+.box-2 {
+  width: 80%;
+  padding: 10px 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box-3 {
+  width: 60%;
+  padding: 40px;
+  margin: 0 auto;
+  background-color: #ffeaa7;
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day31-box-layout.png" width="450"/><br/>
+  > 다양한 margin, padding, width 설정으로 시각 차이를 실습한 박스 레이아웃
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 박스마다 width, padding, margin이 어떻게 시각적으로 다르게 작용하는지 명확하게 확인할 수 있었음  
+- padding은 콘텐츠 영역을 확장하면서 배경색에 영향을 줬고, margin은 요소 간 간격만 조정됨을 눈으로 확인함  
+- margin이 바깥 여백이기 때문에 배경색이 투명하게 유지된다는 점을 DevTools로 보면서 체득함  
+- `margin: 0 auto`를 통해 수평 가운데 정렬이 된다는 점도 실습을 통해 완전히 이해함
+
+---
+
+## 💭 느낀 점
+
+- 박스 모델은 이론으로만 이해할 수 있는 게 아니라,  
+  반드시 눈으로 보고 손으로 배치해봐야 감이 잡히는 개념이라는 걸 다시 느꼈음  
+- DevTools의 박스 시각화는 이해에 큰 도움이 되었고,  
+  특히 margin/padding의 구분을 시각적으로 보는 순간 개념이 확실히 정리됐음  
+- 이후 flex나 grid를 배울 때도 이 감각이 중요한 밑바탕이 될 것 같음
