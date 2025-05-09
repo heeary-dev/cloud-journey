@@ -89,3 +89,125 @@ footer {
 - `font-family`를 바꾸고 나니 웹페이지의 분위기가 훨씬 깔끔하고 가독성이 좋아졌음  
 - 시각적 스타일을 코드로 컨트롤할 수 있다는 점이 흥미로웠고, 실무에서도 유용하게 사용할 수 있을 것 같다는 자신감이 생김
 
+---
+
+# ✅ Day 30 – 고급 선택자 & 가상 클래스 실습
+
+## 📘 1. 개념 정리
+
+- `:hover`, `:first-child`, `:last-child`, `:nth-child()` 등 가상 클래스는  
+  HTML 구조나 사용자 상호작용에 따라 자동으로 스타일을 적용할 수 있는 CSS 기능임
+- `+`, `>`, `~`, 공백 등 고급 선택자는 요소 간 구조 관계에 따라 특정 요소만 정확히 선택할 수 있게 해줌
+- 실습을 통해 **구조 기반 선택자와 가상 클래스의 실제 동작 방식**을 시각적으로 확인하고 체득함
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+/* Day 30 실습용 style.css - 다양한 가상 클래스 실험 */
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f5f5f5;
+    color: #222;
+    line-height: 1.6;
+}
+
+#main-title {
+    font-size: 36px;
+    color: #2d3436;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.main-nav {
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px dashed #aaa;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.main-nav a {
+    font-size: 18px;
+    padding: 8px 12px;
+    background-color: #dfe6e9;
+    border-radius: 5px;
+    display: inline-block;
+}
+.main-nav a:hover {
+    background-color: #0984e3;
+    color: white;
+}
+.main-nav a:first-child {
+    font-weight: bold;
+    text-decoration: underline;
+}
+.main-nav a:last-child {
+    color: #d63031;
+}
+
+.intro-text {
+    font-size: 20px;
+    background-color: #ffffff;
+    color: #444;
+    padding: 25px;
+    text-align: justify;
+}
+.intro-text p:last-child {
+    font-style: italic;
+    color: #636e72;
+}
+.intro-text p:nth-child(odd) {
+    background-color: #f1f2f6;
+}
+
+footer {
+    font-size: 14px;
+    color: #555;
+    background-color: #ecf0f1;
+    text-align: center;
+    padding: 15px;
+}
+footer > p:first-child {
+    font-size: 14px;
+    color: #6c5ce7;
+    text-transform: uppercase;
+}
+footer > p + p {
+    font-size: 12px;
+    color: #b2bec3;
+    font-style: italic;
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day30-index-pseudoclass.png" width="450" /><br/>
+  > 다양한 가상 클래스 및 고급 선택자가 적용된 실습용 index.html 화면
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 실습을 위해 다양한 가상 클래스와 구조 선택자를 한꺼번에 적용하다 보니  
+  실제 웹페이지로서는 다소 **과한 강조, 색상 중첩, 정렬 불균형** 등이 발생했음
+- 특히 `.main-nav a:first-child`, `.intro-text p:last-child`, `footer > p + p` 등에서  
+  시각적으로 의미 없는 강조가 여러 번 겹치면서 **레이아웃이 흐트러짐**
+- 하지만 실습 목적으로는 기능별 동작 결과를 **명확하게 시각화하는 데에 성공했음**
+
+---
+
+## 💭 느낀 점
+
+- 실습 중에는 기능 확인이 우선이므로, 시각적 일관성보다 **구조와 선택자 적용이 중요한 학습으로 진행해보았다 
+- 실무에서는 전체적인 톤, 사용자 경험, 가독성, 조화가 훨씬 더 중요하다는 것을 대비적으로 느낄 수 있었음  
+- 오늘은 **CSS의 구조 선택자와 가상 클래스의 실질적인 사용 방식**을 체험하면서,  
+  앞으로는 필요한 부분에만 간결하게 적용하는 감각을 익혀야겠다고 느꼈음
+
