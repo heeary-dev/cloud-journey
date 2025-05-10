@@ -295,3 +295,125 @@ footer > p + p {
 - DevTools의 박스 시각화는 이해에 큰 도움이 되었고,  
   특히 margin/padding의 구분을 시각적으로 보는 순간 개념이 확실히 정리됐음  
 - 이후 flex나 grid를 배울 때도 이 감각이 중요한 밑바탕이 될 것 같음
+
+---
+
+# ✅  Day 32 – 전체 구조 통일 및 CSS 스타일 정리
+
+## 📘 1. 개념 정리
+
+- 웹사이트가 여러 HTML 파일로 구성될수록 공통된 style.css를 사용해 디자인을 통일하는 것이 중요함
+- `header`, `nav`, `main`, `footer` 등의 시맨틱 구조는 모든 페이지에 일관되게 구성되어야 유지보수와 확장성이 높아짐
+- 공통 요소에는 반복되는 클래스명을 지정하고, 개별 콘텐츠만 각 HTML에서 다르게 관리하는 구조를 적용
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+/* style.css 주요 공통 스타일 */
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f5f5f5;
+  color: #222;
+  line-height: 1.6;
+}
+
+#main-title {
+  font-size: 36px;
+  color: #2d3436;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.main-nav {
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+.main-nav a {
+  font-size: 18px;
+  padding: 8px 12px;
+  color: #2d3436;
+  text-decoration: none;
+  margin: 0 8px;
+  transition: background-color 0.3s ease;
+}
+.main-nav a:hover {
+  background-color: #dfe6e9;
+  border-radius: 4px;
+}
+
+.intro-text {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 18px;
+  background-color: #ffffff;
+  color: #444;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+  text-align: left;
+}
+
+footer {
+  font-size: 14px;
+  color: #777;
+  background-color: #ecf0f1;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+footer p {
+  margin: 5px 0;
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day32-style-unified-index.png" width="450" ><br/>
+  > index.html에 스타일이 통일된 구조로 적용된 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day32-style-unified-gear.png" width="450" /><br/>
+  > gear/summer.html에 헤더, 내비, 푸터가 일관되게 적용된 결과
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day32-style-unified-food.png" width="450" /><br/>
+  > food/seasonal.html에 통일된 시각 구조 반영
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day32-style-unified-tips.png" width="450" /><br/>
+  > tips/faq.html에 적용된 스타일 통일 예시
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day32-style-unified-sites.png" width="450" /><br/>
+  > sites/beginner.html도 공통 스타일 구조로 정리됨
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 각 HTML 파일이 디렉토리 위치에 따라 상대 경로가 달라 `href`, `link` 경로를 페이지마다 조정해야 했음  
+- 파일마다 중복된 구조를 일일이 수정하기보다 **공통 구조를 복붙한 뒤 내용만 바꾸는 방식**이 훨씬 효율적이었음  
+- 디자인보다도 **구조 정돈과 시각적 일관성** 확보가 이번 실습의 핵심이었음
+
+---
+
+## 💭 느낀 점
+
+- HTML 파일이 많아지면 **디자인보단 구조 통일이 훨씬 더 중요하다는 걸 실감**  
+- header/nav/footer 같은 반복되는 레이아웃은 반드시 CSS로 공통 관리해야 유지가 쉬움  
+- 오늘 실습을 통해 캠핑 웹이 **단순한 실습용 프로젝트를 넘어서, 하나의 실제 사이트처럼 구성**될 수 있다는 자신감이 생김
+
+
