@@ -416,4 +416,95 @@ footer p {
 - header/nav/footer 같은 반복되는 레이아웃은 반드시 CSS로 공통 관리해야 유지가 쉬움  
 - 오늘 실습을 통해 캠핑 웹이 **단순한 실습용 프로젝트를 넘어서, 하나의 실제 사이트처럼 구성**될 수 있다는 자신감이 생김
 
+---
 
+# ✅  Day 33 – Flexbox 실습
+
+## 📘 1. 개념 정리
+
+- Flexbox는 요소를 **가로 또는 세로 방향(1차원)** 으로 유연하게 정렬하는 CSS 레이아웃 도구
+- 주 축(main axis)과 교차 축(cross axis)을 기준으로 `justify-content`, `align-items` 등으로 정렬
+- 주요 속성:
+  - `display: flex`: Flex 컨테이너 선언
+  - `flex-direction`: 주 축 방향 설정 (row, column)
+  - `flex-wrap`: 줄바꿈 허용 여부
+  - `justify-content`: 주 축 정렬
+  - `align-items`: 교차 축 정렬
+  - `flex`, `order`, `align-self`: 개별 아이템 제어
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+<!-- gear/summer.html 내부 section -->
+<section class="gear-flex">
+  <h2>Recommended Summer Gear</h2>
+  <div class="gear-container">
+    <div class="gear-card">Tent</div>
+    <div class="gear-card">Cooler</div>
+    <div class="gear-card">Portable Fan</div>
+    <div class="gear-card">Water Jug</div>
+    <div class="gear-card">Sunshade</div>
+    <div class="gear-card">Camping Chair</div>
+  </div>
+</section>
+
+<!-- style.css 내부 추가 -->
+.gear-flex {
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.gear-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.gear-card {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 1.5rem;
+  width: 30%;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day33-gear-flexbox.png" width="500" /><br/>
+  > Flexbox로 정렬된 여름 캠핑 장비 카드 레이아웃 (6개 카드, 2줄 정렬)
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day33-gear-center.png" width="500" /><br/>
+  > justify-content를 center로 변경해 중앙 정렬된 카드 배치
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day33-gear-two-column.png" width="500" /><br/>
+  > 카드 width를 45%로 변경해 2열로 정렬된 결과 화면
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `flex-wrap` 누락 시 카드들이 한 줄에 모두 몰려서 깨짐 → `flex-wrap: wrap`으로 해결
+- `box-sizing: border-box`를 생략하면 padding 포함 너비 계산이 달라짐 → 레이아웃 틀어짐 방지용으로 필수
+
+---
+
+## 💭 느낀 점
+
+- Flexbox의 `justify-content`, `align-items` 개념을 실제로 적용해보니 축 개념의 중요성이 실감됨
+- float, inline-block보다 훨씬 직관적이고 유지보수가 쉬운 구조라는 점에서 실무 활용도 높아 보임
+- 향후 Grid와의 차이를 비교해보면 더 깊은 이해가 가능할 것으로 기대됨
