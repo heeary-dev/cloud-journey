@@ -508,3 +508,92 @@ footer p {
 - Flexbox의 `justify-content`, `align-items` 개념을 실제로 적용해보니 축 개념의 중요성이 실감됨
 - float, inline-block보다 훨씬 직관적이고 유지보수가 쉬운 구조라는 점에서 실무 활용도 높아 보임
 - 향후 Grid와의 차이를 비교해보면 더 깊은 이해가 가능할 것으로 기대됨
+
+---
+
+# ✅ Day 34 – CSS Grid 실습 (캠핑 웹사이트 구성)
+
+## 📘 1. 개념 정리
+
+- CSS Grid는 요소를 **가로(열)와 세로(행)** 기준으로 배치할 수 있는 2차원 레이아웃 시스템
+- 기본 개념은 엑셀 표처럼 줄과 칸을 나눠 각 요소를 정확히 위치시키는 것
+- 주요 속성:
+  - `display: grid`: Grid 레이아웃 시작
+  - `grid-template-columns`: 열 구성 (예: 3열 구성 시 `repeat(3, 1fr)`)
+  - `gap`: 행과 열 사이 간격
+  - `grid-column`, `grid-row`: 아이템 병합 또는 위치 지정
+  - `place-items`: 가로 + 세로 정렬 축약형
+
+---
+
+## 🧪 2. 실습 명령어
+
+<!-- food/seasonal.html 내부 section -->
+<section class="seasonal-grid">
+  <h2>계절별 캠핑 요리 추천</h2>
+  <div class="recipe-grid">
+    <div class="recipe-card">봄철 바비큐</div>
+    <div class="recipe-card">여름 냉라면</div>
+    <div class="recipe-card">우중 날씨 전골</div>
+    <div class="recipe-card">가을 꼬치구이</div>
+    <div class="recipe-card">겨울 스튜</div>
+    <div class="recipe-card">야식 라면</div>
+  </div>
+</section>
+
+<!-- style.css 내부 추가 -->
+.seasonal-grid {
+  padding: 2rem;
+  background-color: #fefefe;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.recipe-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day34-recipe-grid.png" width="500"/><br/>
+  > 3x2 그리드 형태로 정렬된 계절별 캠핑 요리 카드 레이아웃
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day34-recipe-2col.png" width="500"/><br/>
+  > 열을 2개로 줄인 경우의 레이아웃 변화 (`repeat(2, 1fr)`)
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day34-recipe-centered.png" width="500"/><br/>
+  > 각 카드에 place-self: center 적용 후 중앙 정렬 확인
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `grid-template-columns` 설정이 `px` 고정값일 경우 화면 크기 축소 시 깨짐 현상 → `fr` 단위로 유연하게 조정함
+- `gap` 없이 구성하면 카드들이 너무 붙어 답답해 보임 → `gap` 적용으로 시각적 여백 확보
+- 중앙 정렬을 위해 `place-items` 또는 `place-self` 속성 실습 진행
+
+---
+
+## 💭 느낀 점
+
+- Flexbox보다 구조가 명확하고 요소 위치 제어가 쉬워서 **목록 정렬**에 적합함을 느낌  
+- 카드가 정확히 줄 단위로 정렬되며, 가로/세로 간격을 명확히 제어할 수 있어 시각적으로 정돈된 느낌  
+- Grid는 구조를 먼저 계획하고 배치하는 느낌이라, **레이아웃 설계에 매우 적합한 도구**임을 체감
+
