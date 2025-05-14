@@ -528,6 +528,7 @@ footer p {
 
 ## 🧪 2. 실습 명령어
 
+```
 <!-- food/seasonal.html 내부 section -->
 <section class="seasonal-grid">
   <h2>계절별 캠핑 요리 추천</h2>
@@ -561,6 +562,7 @@ footer p {
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
 }
+```
 
 ---
 
