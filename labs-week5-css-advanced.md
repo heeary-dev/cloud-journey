@@ -599,3 +599,78 @@ footer p {
 - 카드가 정확히 줄 단위로 정렬되며, 가로/세로 간격을 명확히 제어할 수 있어 시각적으로 정돈된 느낌  
 - Grid는 구조를 먼저 계획하고 배치하는 느낌이라, **레이아웃 설계에 매우 적합한 도구**임을 체감
 
+---
+
+# ✅ Day 35 – Media Query 실습
+
+## 📘 1. 개념 정리
+
+- **Media Query(미디어 쿼리)**는 화면의 크기나 디바이스 조건에 따라 CSS를 다르게 적용할 수 있는 문법
+- 반응형 웹 디자인(Responsive Web Design)의 핵심 도구
+- 주요 조건:
+  - `max-width`: 화면이 특정 크기보다 작을 때
+  - `min-width`: 특정 크기 이상일 때
+  - `orientation`, `hover`, `prefers-color-scheme` 등도 사용 가능
+- 레이아웃은 Flex/Grid로 구성하고, Media Query로 크기에 따라 스타일만 변경하는 방식
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+<!-- style.css 내에 Media Query 추가 -->
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .recipe-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day35-media-desktop.png" width="500" /><br/>
+  > PC 화면에서 3열로 정렬된 계절별 요리 카드 레이아웃
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day35-media-tablet.png" width="500"/><br/>
+  > 브라우저 폭 700px에서 자동으로 2열로 변경된 모습
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day35-media-mobile.png" width="500" /><br/>
+  > 모바일 화면(400px)에서 1열로 전환된 모습
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `max-width` 기준 순서가 잘못되면 적용되지 않음 → 작은 화면부터 큰 화면 순서로 배치해야 안정적
+- 모바일 대응 시 `grid-template-columns` 외에도 `font-size`, `padding` 등 추가 조정이 필요한 경우가 있음
+- Media Query 내부는 기본 스타일과 “구조는 같고 값만 바꾼다”는 패턴을 기억하는 게 핵심
+
+---
+
+## 💭 느낀 점
+
+- Media Query는 코드를 복잡하게 만들지 않고도 **같은 구조에서 다양한 화면에 대응할 수 있다는 점**에서 강력한 도구
+- `@media (max-width: 768px)` 한 줄로 전체 레이아웃이 바뀌는 걸 직접 보며 개념이 명확해졌고,
+- Flex/Grid와 조합할수록 **더 강력하고 유연한 레이아웃 시스템이 된다**는 것을 실감했다
+
+
