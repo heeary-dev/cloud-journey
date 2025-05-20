@@ -133,4 +133,97 @@ console.log("가방에 든 물건은 총 " + String(items) + "개입니다.");
 - 콘솔에 여러 종류의 데이터를 출력하면서 JS 문법을 실험하고 결과를 눈으로 확인하니, 단순한 이론보다 훨씬 깊게 이해할 수 있었음  
 - 변수 선언 방식, 형변환의 필요성, 연산 방식 등 초반에 익숙해져야 할 개념들을 직접 만져보며 감을 잡을 수 있어 의미 있는 시간이었다
 
+---
+
+# ✅ Day 38 – 조건문, 비교/논리 연산자 실습
+
+## 📘 1. 개념 정리
+
+- `if`, `else if`, `else`는 조건에 따라 분기 처리할 때 사용하는 핵심 구조
+- 비교 연산자 (`===`, `!==`, `<`, `>=` 등)로 값의 상태를 판별
+- 논리 연산자 (`&&`, `||`, `!`)를 조합해 복합 조건을 구성할 수 있음
+- 중첩 if문은 하나의 조건 내부에서 또 다른 조건을 확인할 때 사용
+- **조건식과 변수명이 의미적으로 일치해야** 코드 해석과 유지보수가 쉬워짐
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+<!-- script.js -->
+let temperature = 26;
+let isSunny = true;
+let hasTent = false;
+let isWeekend = true;
+
+// [조건 1] 기온에 따른 메시지
+if (temperature >= 30) {
+  console.log("폭염 주의! 그늘이 꼭 필요해요.");
+} else if (temperature >= 20) {
+  console.log("완벽한 캠핑 날씨입니다!");
+} else {
+  console.log("쌀쌀하니 따뜻한 옷을 챙기세요.");
+}
+
+// [조건 2] 날씨와 텐트 보유 여부
+if (isSunny && hasTent) {
+  console.log("맑은 날씨에 텐트도 있으니 바로 설치 가능!");
+} else if (isSunny && !hasTent) {
+  console.log("맑지만 텐트가 없으니 준비가 필요해요.");
+} else {
+  console.log("날씨가 좋지 않으니 실내 대안을 고려하세요.");
+}
+
+// [조건 3] 주말 + 텐트 보유 여부
+if (isWeekend) {
+  if (hasTent) {
+    console.log("주말 캠핑 출발 준비 완료!");
+  } else {
+    console.log("주말이지만 장비가 부족해요. 캠핑 전 준비 먼저!");
+  }
+} else {
+  console.log("평일엔 장비 점검과 계획 세우기에 좋은 날입니다.");
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day38-script-link.png" width="500" /><br/>
+  > index.html에 외부 자바스크립트 파일이 `<script src="script.js">`로 연결된 모습
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day38-logic-code.png" width="500" /><br/>
+  > script.js에 작성된 조건문, 중첩 if, 논리 연산자 포함 실습 코드 전체
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day38-console-output.png" width="500" /><br/>
+  > 브라우저 Console 탭에 출력된 날씨, 텐트, 주말 상태별 메시지 결과
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 처음에는 `needsTent`, `!hasTent` 등 **부정형 변수와 조건 조합이 혼동을 유발**해 출력 메시지와 변수의 의미가 어긋남  
+→ `hasTent`, `isSunny` 등 긍정형 변수로 구조 변경  
+→ 조건식과 출력 메시지가 일치하게 되어 가독성과 논리 흐름이 개선됨
+- 중첩 if문 작성 시 중괄호 `{}` 누락 오류 발생 → 자동 들여쓰기 활용하여 구조 점검으로 해결
+
+---
+
+## 💭 느낀 점
+
+- `if`, `else if`, `else` 구조를 활용해 실제 캠핑 조건별로 분기되는 메시지를 구현하면서  
+**조건문이 어떻게 상황을 제어하고 웹의 행동을 바꾸는지** 직접 체감할 수 있었다  
+- 변수명을 긍정형으로 설계하고 논리 연산자(`&&`, `!`)를 사용할 때 **사람의 언어와 코드 흐름이 일치하도록 만드는 것**이  
+개발자에게 매우 중요한 감각이라는 걸 알게 되었다  
+- 실습을 통해 **프로그래밍은 “조건에 따라 다르게 말하게 만드는 기술”**이라는 본질을 경험했다
+
+
+
 
