@@ -153,7 +153,7 @@ console.log("가방에 든 물건은 총 " + String(items) + "개입니다.");
 <!-- script.js -->
 let temperature = 26;
 let isSunny = true;
-let hasTent = false;
+let hasTent = true;
 let isWeekend = true;
 
 // [조건 1] 기온에 따른 메시지
