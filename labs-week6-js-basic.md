@@ -411,7 +411,7 @@ if (nickname.length < 2) {
     console.log(`😊 ${nickname}님, 액티브한 캠핑을 즐기기에 좋은 나이입니다!`);
   }
 
-  if (likesFire === "yes" && prefersSilence === "no") {
+  if (likesFire === "yes" && prefersSilence === "yes") {
     console.log("🔥🌲 불멍 명당에서 조용한 힐링 캠핑을 추천합니다.");
   } else if (likesFire === "yes") {
     console.log("🔥 불멍 명소에서 따뜻한 캠핑을 즐겨보세요.");
