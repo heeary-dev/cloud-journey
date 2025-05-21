@@ -457,7 +457,92 @@ if (nickname.length < 2) {
   **실제 웹 로직이라는 것은 이런 구조적 사고를 통해 사용자에게 맞춤형 반응을 제공하는 것**임을 깨달았다  
 - 이번 실습은 단순한 문법을 넘어, **현실 상황을 로직으로 표현하는 감각을 길러준 전환점**이 되었다
 
+---
 
+# ✅ Day 42 – 함수 선언과 호출, 매개변수와 반환
+
+## 📘 1. 개념 정리
+
+- 함수는 `function 함수이름() {}` 형태로 선언하며, 코드 블록을 이름으로 묶어 실행할 수 있게 만든다  
+- 함수는 작성만으로는 실행되지 않으며, `함수이름()` 형태로 호출해야 실행된다  
+- 함수는 외부에서 값을 받을 수 있는 매개변수를 정의할 수 있으며, 실제 호출 시 인자를 전달한다  
+- `return` 키워드를 사용하면 함수 실행 결과를 함수 외부로 전달할 수 있다  
+- 함수 안에서는 조건문, 문자열 가공, 다른 함수 호출 등 자유롭게 로직을 작성할 수 있다
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+// 1. 고정된 인삿말 출력
+function sayHello() {
+  console.log("안녕하세요! 캠핑을 시작해볼까요?");
+}
+sayHello();
+
+// 2. 닉네임을 받아서 인사하기
+function greet(name) {
+  console.log(`반가워요, ${name}님!`);
+}
+greet("희성");
+greet("지훈");
+
+// 3. 나이에 따라 캠핑 스타일 안내 메시지 반환
+function campingAgeGuide(age) {
+  if (age < 18) {
+    return "보호자와 함께 캠핑하세요!";
+  } else if (age >= 60) {
+    return "편안한 힐링 캠핑을 추천합니다.";
+  } else {
+    return "액티브한 캠핑을 즐기기 좋은 나이입니다!";
+  }
+}
+let message = campingAgeGuide(27);
+console.log(message);
+
+// 4. 닉네임과 나이 정보를 조합한 소개 메시지 함수
+function introduce(name, age) {
+  return `${name}님은 ${age}세이며, ${campingAgeGuide(age)}`;
+}
+let intro = introduce("희성", 29);
+console.log(intro);
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day42-function-basic.png" width="500" /><br/>
+  > 함수 선언, 매개변수 전달, return 사용까지 포함된 전체 script.js 코드
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day42-console-output.png" width="500"/><br/>
+  > 각 함수 실행 결과가 브라우저 Console에 정상적으로 출력된 화면
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 함수 선언 후 호출을 하지 않으면 아무 동작도 하지 않기 때문에,  
+  **정의와 호출은 반드시 구분해서 작성해야 함**  
+- `return`을 쓰지 않고 console.log만 쓰면, **함수 외부로 값을 전달할 수 없음**  
+→ 외부에서 값을 활용하고 싶을 땐 반드시 return으로 돌려줘야 함  
+- 매개변수(parameter)와 인자(argument)를 헷갈릴 수 있는데,  
+  이름(틀)은 함수 안쪽, 실제 값은 함수 호출 시 넘긴다는 걸 기억하면 정리됨
+
+---
+
+## 💭 느낀 점
+
+- 지금까지는 로직을 그대로 작성만 했지만,  
+  오늘 처음으로 **입력값을 받아서 처리하고 결과를 내보내는 로직**을 함수라는 틀로 감싸며  
+  **코드를 “설계”한다는 감각을 처음으로 느낄 수 있었음**  
+- `return`과 `console.log`의 역할 차이를 정확히 이해하게 되었고,  
+  함수를 쓸수록 코드가 점점 정돈되고 재사용이 쉬워지는 걸 직접 체감할 수 있었다  
+- **단일 실행 → 함수화 → 분리된 모듈 구성**으로 나아가는 첫걸음을 밟은 의미 있는 실습이었다
 
 
 
