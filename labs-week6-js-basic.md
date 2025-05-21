@@ -376,6 +376,86 @@ console.log(shout);
 - 문자열을 조건문과 결합하니 상황을 유연하게 제어할 수 있어,  
   사용자 경험을 세밀하게 설계하는 감각이 처음으로 생겼다
 
+---
+
+# ✅ Day 41 – 조건 분기 종합 로직 구현 실습
+
+## 📘 1. 개념 정리
+
+- `prompt()`는 사용자로부터 문자열을 입력받는 함수이며, 입력 즉시 `.trim()`과 `.toLowerCase()`를 적용해 전처리 가능
+- `.length`: 입력된 문자열의 길이를 확인하여 유효성 검사에 활용
+- `isNaN()`: 입력값이 숫자인지 여부를 판단하는 내장 함수 (함수 구조는 추후 학습 예정)
+- 조건문(`if`, `else if`, `else`)은 중첩 및 논리 연산자(`&&`, `||`)를 함께 사용해 실전 시나리오 설계 가능
+- 템플릿 문자열(`` `Hello, ${name}` ``)과 `.toUpperCase()`를 통해 메시지를 가공 및 강조 출력
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+let nickname = prompt("닉네임을 입력하세요:").trim();
+let age = Number(prompt("나이를 입력하세요:"));
+let likesFire = prompt("불멍을 좋아하시나요? (yes/no)").trim().toLowerCase();
+let prefersSilence = prompt("조용한 캠핑을 선호하나요? (yes/no)").trim().toLowerCase();
+
+if (nickname.length < 2) {
+  console.log("❌ 닉네임은 2자 이상 입력해주세요.");
+} else if (isNaN(age) || age <= 0) {
+  console.log("❌ 나이를 정확히 입력해주세요.");
+} else {
+  if (age < 18) {
+    console.log(`👶 ${nickname}님은 보호자 동반이 필요합니다.`);
+  } else if (age >= 40) {
+    console.log(`🧓 ${nickname}님, 편안한 힐링 캠핑을 추천드려요.`);
+  } else {
+    console.log(`😊 ${nickname}님, 액티브한 캠핑을 즐기기에 좋은 나이입니다!`);
+  }
+
+  if (likesFire === "yes" && prefersSilence === "no") {
+    console.log("🔥🌲 불멍 명당에서 조용한 힐링 캠핑을 추천합니다.");
+  } else if (likesFire === "yes") {
+    console.log("🔥 불멍 명소에서 따뜻한 캠핑을 즐겨보세요.");
+  } else if (prefersSilence === "yes") {
+    console.log("🌲 조용한 숲속 데크 사이트를 추천합니다.");
+  } else {
+    console.log("🎉 활기찬 가족형 캠핑장을 추천드립니다!");
+  }
+
+  console.log(`HELLO, ${nickname.toUpperCase()}! 좋은 캠핑 되세요!`);
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day41-camping-logic.png" width="500" /><br/>
+  > 캠핑 조건 시나리오 전체 흐름이 포함된 script.js 실습 코드
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day41-console-output.png" width="500" /><br/>
+  > 입력값에 따라 달라지는 맞춤형 캠핑 추천 메시지 결과
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 입력값을 `.trim().toLowerCase()`로 전처리하여 **공백, 대소문자 이슈를 사전에 차단**  
+- 중첩 if문을 사용할 때 **중괄호(`{}`) 구조를 명확하게 시각화하지 않으면 흐름을 놓치기 쉬움**  
+→ 전체 조건 흐름이 어디까지 묶여 있는지 항상 들여쓰기와 구조로 파악하는 훈련 필요
+
+---
+
+## 💭 느낀 점
+
+- 지금까지 배운 입력, 조건문, 문자열 조작을 모두 조합하여  
+  **실제로 작동하는 캠핑 추천 로직을 직접 구현해본 첫 경험**이었음  
+- 조건이 많아질수록 코드 흐름을 구조적으로 짜는 게 중요하다는 걸 실감했고  
+  **실제 웹 로직이라는 것은 이런 구조적 사고를 통해 사용자에게 맞춤형 반응을 제공하는 것**임을 깨달았다  
+- 이번 실습은 단순한 문법을 넘어, **현실 상황을 로직으로 표현하는 감각을 길러준 전환점**이 되었다
 
 
 
