@@ -308,6 +308,75 @@ if (nickname === "히얼") {
   **형변환(`Number()`)의 중요성**을 직접 실습을 통해 체감함  
 - 단순한 조건문보다도 **입력값 → 판단 → 분기 → 출력**의 전체 흐름을 구성하는 경험이 인상 깊었다
 
+---
+
+# ✅ Day 40 – 문자열 조작을 이용한 조건문 실습
+
+## 📘 1. 개념 정리
+
+- `prompt()`는 사용자로부터 문자열을 입력받는 브라우저 내장 함수  
+- 문자열은 `.length`로 길이를 확인하고, `.includes()`로 특정 문자열 포함 여부를 확인 가능  
+- `.toUpperCase()`를 사용하면 입력값을 대문자로 변환해 강조할 수 있음  
+- 조건문과 함께 문자열 메서드를 조합하면 **입력값에 따라 동적으로 반응하는 메시지 출력 로직**을 구현할 수 있음
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+let nickname = prompt("닉네임을 입력하세요:");
+
+if (nickname.length < 2) {
+  console.log("닉네임이 너무 짧습니다. 2글자 이상 입력해주세요.");
+} else {
+  console.log(`환영합니다, ${nickname}님!`);
+}
+
+if (nickname.includes("캠")) {
+  console.log("당신은 캠핑 마니아시군요!");
+} else if (nickname.includes("불")) {
+  console.log("불멍 좋아하시나요?");
+} else {
+  console.log("개성 있는 닉네임이네요!");
+}
+
+let shout = `HELLO, ${nickname.toUpperCase()}!`;
+console.log(shout);
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day40-string-logic.png" width="500"/><br/>
+  > prompt()로 입력받은 닉네임을 분석하고 조건문으로 메시지를 출력하는 script.js 코드
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day40-console-output.png" width="500"/><br/>
+  > 닉네임 길이, 포함 단어 여부, 대문자 인삿말 등 조건별로 분기된 출력 결과
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 입력값의 길이를 체크할 때 `.length`는 공백도 포함하므로, 향후에는 `.trim()`과 함께 쓰는 것도 고려해야 함  
+- `.includes()`는 대소문자를 구분하므로 사용 전 `.toLowerCase()` 등으로 통일 처리하는 방식도 추후 유용할 수 있음  
+- 템플릿 문자열을 사용할 때 백틱(`)이 아닌 작은따옴표(')를 쓸 경우 문자열 삽입이 작동하지 않음 → 문법 오류 확인
+
+---
+
+## 💭 느낀 점
+
+- 단순히 입력받은 값을 출력하는 것에서 한 단계 더 나아가,  
+  **입력된 문자열을 분석하고 조건에 따라 결과를 다르게 출력하는 로직**을 직접 구성할 수 있게 되어  
+  자바스크립트가 "동작하는 웹"을 만드는 도구라는 느낌을 더욱 강하게 받았다  
+- 문자열을 조건문과 결합하니 상황을 유연하게 제어할 수 있어,  
+  사용자 경험을 세밀하게 설계하는 감각이 처음으로 생겼다
+
+
 
 
 
