@@ -162,4 +162,89 @@ for (let i = 0; i < temps.length; i++) {
   **입력 → 반복 → 조건 판단 → 출력**의 전 과정을 코드로 다뤄본 느낌이 들었고,  
   이게 바로 로직 감각을 키우는 핵심이라는 걸 확실히 느낀 날이었다
 
+---
+
+# ✅ Day 45 – 객체와 로직 종합 설계
+
+## 📘 1. 개념 정리
+
+- 객체는 여러 개의 정보를 하나의 묶음으로 표현하는 구조 (`{ key: value }`)  
+- 객체 배열은 객체 여러 개를 `[]` 안에 넣어 관리하며, 순서대로 반복문으로 접근 가능  
+- 반복문으로 배열 요소(객체)를 순회하고, 조건문으로 상황별 분기 처리  
+- 점 표기법(`obj.key`)을 사용해 객체 속성에 접근  
+- 조건문과 반복문을 조합해 현실 시나리오를 코드로 설계할 수 있음
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+const campers = [
+  { name: "희성", age: 27, hasTent: true },
+  { name: "지훈", age: 15, hasTent: false },
+  { name: "현수", age: 62, hasTent: true },
+  { name: "미나", age: 20, hasTent: false }
+];
+
+for (let i = 0; i < campers.length; i++) {
+  const person = campers[i];
+
+  // 나이에 따라 안내 메시지 분기
+  if (person.age < 18) {
+    console.log(`${person.name}님은 미성년자입니다. 보호자 동반이 필요해요.`);
+  } else if (person.age >= 60) {
+    console.log(`${person.name}님은 시니어 캠핑존을 안내해 드릴게요.`);
+  } else {
+    console.log(`${person.name}님은 자유롭게 캠핑을 즐기실 수 있어요.`);
+  }
+
+  // 텐트 소지 여부에 따라 추가 메시지
+  if (!person.hasTent) {
+    console.log(`→ ${person.name}님은 텐트를 챙기지 않았어요. 대여소를 이용해주세요.`);
+  } else {
+    console.log(`→ ${person.name}님은 텐트가 준비되어 있습니다.`);
+  }
+
+  console.log("----------");
+}
+```
+
+---
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day45-logic-objects.png" width="500" /><br/>
+  > 객체 배열 + 조건문 조합으로 상황별 메시지를 출력하는 전체 script.js 코드
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day45-logic-output.png" width="500" /><br/>
+  > 각 참가자 정보에 따라 분기된 안내 메시지가 콘솔에 출력된 결과
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- 객체 배열을 순회할 때 `for`문 안에서 `const person = campers[i]`로 구조를 분리하니  
+  **읽기 쉽고 디버깅도 편해졌다**는 걸 체감함  
+- 객체 속성 접근 시 `.` 표기법이 익숙해졌고, `"key"`를 문자열로 접근하는 방식은 아직 쓸 일이 적지만  
+  **키 이름이 변수일 때는 꼭 bracket 방식이 필요하다**는 점을 다시 확인함  
+- 조건 분기 중 `if (!person.hasTent)` 구조처럼  
+  **불리언 값을 부정 연산자로 다룰 수 있다는 흐름**을 코드에 직접 적용해봄
+
+---
+
+## 💭 느낀 점
+
+- 객체 배열을 순회하면서 각 요소의 속성에 따라 분기하는 구조는  
+  **실제 서비스나 관리 시스템에서도 똑같이 쓰일 수 있다는 실감**이 들었고,  
+  내가 로직을 설계하고 흐름을 만들어내는 감각을 처음으로 진하게 느낀 날이었다  
+- 자바스크립트를 단순히 문법이 아니라  
+  **“사람의 상황을 코드로 번역하는 언어”**로 바라보게 되었고,  
+  앞으로 Java로 넘어가더라도 오늘의 구조가 기반이 될 거라는 확신이 생겼다
+
 
