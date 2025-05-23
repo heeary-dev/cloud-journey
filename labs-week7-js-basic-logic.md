@@ -78,3 +78,88 @@ const introduceArrow = (name, temp) =>
   **코드가 짧아지면서도 명확해지는 경험**을 할 수 있었다  
 - 이번 실습은 단순히 “함수를 배웠다”에서 벗어나  
   **현실 조건을 코드로 설계하고 표현하는 첫 구성 경험**이 되었다
+
+---
+
+# ✅ Day 44 – 반복문 (for, while, break, continue) 기초 실습
+
+## 📘 1. 개념 정리
+
+- `for`문은 반복 횟수가 명확할 때 사용하는 구조로, `for (초기값; 조건; 증감)` 형식  
+- `while`문은 반복 조건만 주고 내부에서 조건을 변경하는 구조 → 무한 루프 주의  
+- `break`는 반복문을 즉시 종료하고, `continue`는 현재 반복을 건너뛰고 다음 반복으로 이동  
+- 배열과 함께 `for`문을 사용하면, 인덱스를 기준으로 순차 접근 가능 (`arr[i]`)  
+- 반복문 안에서 조건문을 결합해 다양한 흐름 제어가 가능
+
+---
+
+## 🧪 2. 실습 명령어
+
+```
+// 1. 캠핑 준비물 출력 (for문)
+const gearList = ["텐트", "침낭", "랜턴", "버너", "식기세트"];
+
+for (let i = 0; i < gearList.length; i++) {
+  console.log(`${i + 1}. ${gearList[i]} 준비 완료`);
+}
+
+// 2. 장작 소진 시뮬레이션 (while문)
+let firewood = 5;
+while (firewood > 0) {
+  console.log(`장작 ${firewood}개 남음`);
+  firewood--;
+}
+console.log("장작이 모두 탔습니다!");
+
+// 3. 짝수 인원만 안내 (continue)
+for (let i = 1; i <= 6; i++) {
+  if (i % 2 !== 0) continue;
+  console.log(`캠핑 참가자 ${i}번: 안내 메시지 전송 완료`);
+}
+
+// 4. 온도 조건에 따른 반복 중단 (break)
+const temps = [22, 21, 19, 17, 14, 9, 5];
+
+for (let i = 0; i < temps.length; i++) {
+  if (temps[i] < 10) {
+    console.log("온도가 너무 낮습니다. 캠핑 중단!");
+    break;
+  }
+  console.log(`현재 온도: ${temps[i]}도 - 캠핑 계속 진행`);
+}
+```
+
+---
+
+## 🖼️ 실습 스크린샷
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day44-loop-basic.png" width="500" /><br/>
+  > for문, while문, break/continue까지 포함된 전체 반복 흐름 스크립트 코드
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heeary-dev/cloud-journey/main/images/day44-loop-output.png" width="500" /><br/>
+  > 배열 요소와 조건에 따라 반복 흐름이 제어되는 console 출력 결과
+</p>
+
+---
+
+## 🛠️ Troubleshooting & 기록
+
+- `for`문의 i가 증가하면서 배열 `temps[i]`도 자연스럽게 다음 요소로 접근하게 된다는 점을 이해함  
+- `.length`는 문자열뿐 아니라 배열에도 적용되며, 배열에서는 **요소의 개수**를 반환함  
+- `if (i % 2)` 대신 `i % 2 !== 0`을 사용해 **조건을 명시적으로 표현하는 습관**이 가독성에 더 유리함  
+- `break`는 조건 만족 시 반복문을 즉시 중단하는데, 그 흐름을 직접 구현해보며 **제어 로직 감각이 확실히 잡힘**
+
+---
+
+## 💭 느낀 점
+
+- 단순 반복이 아닌 조건을 걸어 **어떤 상황에서 중단하거나 건너뛸지 로직으로 설계**하는 게 흥미로웠고,  
+  이런 흐름 설계가 진짜 개발자의 사고방식이라는 걸 체감함  
+- 반복문과 배열, 조건문이 서로 연결되는 구조를 이해하면서  
+  **입력 → 반복 → 조건 판단 → 출력**의 전 과정을 코드로 다뤄본 느낌이 들었고,  
+  이게 바로 로직 감각을 키우는 핵심이라는 걸 확실히 느낀 날이었다
+
+
